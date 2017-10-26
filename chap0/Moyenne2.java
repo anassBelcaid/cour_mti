@@ -9,17 +9,22 @@ class Moyenne2 {
     int count=0;                  //count des notes saisies
     long M=0;                       //moyenne des notes;
 
+    double note;
+    do{
     System.out.println("Enter une note: ");
-    double note=in.nextDouble();
-
+    note=in.nextDouble();
+    }while(note<-1 || note>20);
     while(note>=0)
     {
       M+=note;
       count++;
 
       //Reprendre la saisie
+      do
+      {
       System.out.println("Donner une note: ");
       note=in.nextDouble();
+    }while(note<-1 || note >20);
     }
 
     if(count>0)
