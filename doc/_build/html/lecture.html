@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lecture &mdash; Programmation Orientee Objet/Java</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="top" title="Programmation Orientee Objet/Java" href="index.html" />
+    <link rel="next" title="Structures de Contrôle 1" href="structures1.html" />
+    <link rel="prev" title="Notion de variables primitives" href="variables.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="structures1.html" title="Structures de Contrôle 1"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="variables.html" title="Notion de variables primitives"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Programmation Orientee Objet/Java</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lecture">
+<h1>Lecture<a class="headerlink" href="#lecture" title="Permalink to this headline">¶</a></h1>
+<p>pour la <strong>lecture</strong> d&#8217;une variable a partir du <strong>clavier</strong> on utilise un Objet de la classe <strong>Scanner</strong>, qu&#8217;on relie à l&#8217;entrée principale du programme.</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="n">Scanner</span> <span class="n">input</span><span class="o">=</span><span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Pour pouvoir utiliser cet objet, il faut importer la classe scanner par:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">java.util.Scanner</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exemple">
+<h2>Exemple:<a class="headerlink" href="#exemple" title="Permalink to this headline">¶</a></h2>
+<p>Voici un exemple pour lire deux entiers et afficher leur somme:</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/* import de la classe Scanner*/</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Lecture</span>
+<span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="c1">//Declaration du scanner</span>
+        <span class="n">Scanner</span> <span class="n">input</span><span class="o">=</span><span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="c1">//Declaration de deux entiers</span>
+        <span class="kt">int</span> <span class="n">d1</span><span class="o">,</span><span class="n">d2</span><span class="o">;</span>
+
+        <span class="c1">//lecture</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;donner la valeur d1:&quot;</span><span class="o">);</span>
+        <span class="n">d1</span><span class="o">=</span><span class="n">input</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;donner la valeur d2:&quot;</span><span class="o">);</span>
+        <span class="n">d2</span><span class="o">=</span><span class="n">input</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="c1">//Afficher la somme</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&quot;somme est =%d\n&quot;</span><span class="o">,</span><span class="n">d1</span><span class="o">+</span><span class="n">d2</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="exercice-3">
+<h3>Exercice 3:<a class="headerlink" href="#exercice-3" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Modifier le programme pour lire deux réels, puis afficher leur:</li>
+</ol>
+<ul class="simple">
+<li>somme</li>
+<li>moyenne arithmétique</li>
+<li>moyenne géométrique.</li>
+</ul>
+<p>2.Ecrire un programme qui demande la saisie d&#8217;une température en <strong>Celcius</strong> et la convertit en <strong>Fahrenheit</strong></p>
+<div class="math">
+\[F= \dfrac{9}{5}*C + 32\]</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lecture</a><ul>
+<li><a class="reference internal" href="#exemple">Exemple:</a><ul>
+<li><a class="reference internal" href="#exercice-3">Exercice 3:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="variables.html"
+                        title="previous chapter">Notion de variables primitives</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="structures1.html"
+                        title="next chapter">Structures de Contrôle 1</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/lecture.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="structures1.html" title="Structures de Contrôle 1"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="variables.html" title="Notion de variables primitives"
+             >previous</a> |</li>
+        <li><a href="index.html">Programmation Orientee Objet/Java</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, A.BELCAID.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

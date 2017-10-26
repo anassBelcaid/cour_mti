@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installation de l’environnement de développement pour Java &mdash; Programmation Orientee Objet/Java</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="top" title="Programmation Orientee Objet/Java" href="index.html" />
+    <link rel="next" title="Programmation Orientée Objet" href="oriente_objet.html" />
+    <link rel="prev" title="Vue d’ensemble et table de matière" href="about.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="oriente_objet.html" title="Programmation Orientée Objet"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="about.html" title="Vue d’ensemble et table de matière"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Programmation Orientee Objet/Java</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="installation-de-lenvironnement-de-developpement-pour-java">
+<span id="installation"></span><h1>Installation de l’environnement de développement pour Java<a class="headerlink" href="#installation-de-lenvironnement-de-developpement-pour-java" title="Permalink to this headline">¶</a></h1>
+<p>Pour pouvoir suive le cours, et développer vos programmes, il est conseillé d&#8217;installer les <em>logiciels</em> suivants.</p>
+<div class="section" id="java-jdk">
+<h2>Java jdk<a class="headerlink" href="#java-jdk" title="Permalink to this headline">¶</a></h2>
+<p>le kit de développement java <strong>jdk</strong> <em>(java developement kit)</em>.</p>
+<div class="section" id="linux-open-jdk">
+<h3>Linux (open jdk)<a class="headerlink" href="#linux-open-jdk" title="Permalink to this headline">¶</a></h3>
+<p>Pour installer <strong>openJDK7</strong>, taper la commande suivante dans un terminal:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install open-jdk-7-jdk
+</pre></div>
+</div>
+</div>
+<div class="section" id="mac">
+<span id="id1"></span><h3>Mac<a class="headerlink" href="#mac" title="Permalink to this headline">¶</a></h3>
+<p>Installer <strong>Oracle JDK 8</strong>.</p>
+<ol class="arabic simple">
+<li>Se rendre dans la page <a class="reference external" href="http://www.oracle.com/us/downloads/index.html">Oracle Download</a>.</li>
+<li>Suivre le lien <em>java</em> puis <em>java SE</em></li>
+<li>Télécharger le kit de développement  (JDK).</li>
+<li>Ouvrir le fichier <strong>jdk-XXXX.dmg</strong>  et lancer le programme d&#8217;installation.</li>
+</ol>
+</div>
+<div class="section" id="windows">
+<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">Même étape que <a class="reference internal" href="#mac"><em>Mac</em></a></p>
+</li>
+<li><p class="first">Maintenant il faut ajouter le répertoire <strong>bin</strong> de JDK dans la variable <em>d’environnement</em> <strong>PATH</strong></p>
+</li>
+<li><p class="first">Détecter l&#8217;emplacement du dossier <strong>bin</strong> généralement dans:</p>
+<div class="highlight-python"><div class="highlight"><pre>C:\Program Files\Java\jdk1.7.0_xx\bin
+</pre></div>
+</div>
+</li>
+<li><p class="first">Ajouter ce chemin dans la variable système <strong>PATH</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre>Paramètres systèmes avancées&gt;Variable d’environnement
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Chercher la variable <strong>PATH</strong> et cliquer sur modifier.</p>
+<ol class="arabic simple" start="5">
+<li>Ajouter un <strong>;</strong> puis ajouter l&#8217;emplacement du dossier <strong>bin</strong>.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="eclipse">
+<h2>Eclipse<a class="headerlink" href="#eclipse" title="Permalink to this headline">¶</a></h2>
+<p>Pour le développement des projets en java, on utilisa <a class="reference external" href="http://www.eclipse.org">Eclipse</a> , qui un excellent environnment de developpement intégré <strong>(IDE)</strong>.</p>
+</div>
+<div class="section" id="sublime">
+<h2>Sublime<a class="headerlink" href="#sublime" title="Permalink to this headline">¶</a></h2>
+<p>Pour mieux apprendre la syntaxe des programmes <strong>java</strong>, et le processus de <em>compilation</em> et <em>d’exécution</em>, il est recommandé d’utiliser un éditeur de texte la <strong>console</strong> pour les premiers programmes.</p>
+<p><a class="reference external" href="http://www.sublimetext.com/">Sublime Text</a> reconnaît la  syntaxe de la plupart des langages de programmation, ainsi que des outils pour aider à la conception et l&#8217;analyse rapide du code.</p>
+</div>
+<div class="section" id="git">
+<h2>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://fr.wikipedia.org/wiki/Git">git</a>  est un <strong>logiciel de gestion de version décentralisé</strong>, que vous pouvoir utiliser pour la gestion de votre projets <strong>java</strong> et aussi pour garder les dernières versions du <strong>cours</strong>. et <strong>d&#8217;exercices</strong>.</p>
+<div class="section" id="id4">
+<h3>Installation<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">Installer <a class="reference external" href="http://git-scm.com/">git</a>.</p>
+</li>
+<li><p class="first">une maîtrise des commandes par la console est recommandée, mais on peut aussi utiliser une interface graphique:</p>
+<div class="highlight-python"><div class="highlight"><pre>https://windows.github.com/
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="premiers-pas-avec-git">
+<h3>Premiers pas avec git<a class="headerlink" href="#premiers-pas-avec-git" title="Permalink to this headline">¶</a></h3>
+<p>voici quelque liens pour l&#8217;apprentissage de git( <em>à terminer avant la semaine 5 du cours</em>)</p>
+<ol class="arabic simple">
+<li>liste des commandes <a class="reference external" href="https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf">commandes utiles</a>.</li>
+<li>Tutoriel en ligne <a class="reference external" href="https://try.github.io/">tutorial simple</a> .</li>
+<li>Un jeu simple <a class="reference external" href="http://pcottle.github.io/learnGitBranching/">Jeu</a>.</li>
+<li><a class="reference external" href="http://gitimmersion.com/">tutorial sur votre ordinateur</a> .</li>
+<li>Vidéos officielles de git <a class="reference external" href="http://git-scm.com/videos/">Vidéos</a> .</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installation de l’environnement de développement pour Java</a><ul>
+<li><a class="reference internal" href="#java-jdk">Java jdk</a><ul>
+<li><a class="reference internal" href="#linux-open-jdk">Linux (open jdk)</a></li>
+<li><a class="reference internal" href="#mac">Mac</a></li>
+<li><a class="reference internal" href="#windows">Windows</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#eclipse">Eclipse</a></li>
+<li><a class="reference internal" href="#sublime">Sublime</a></li>
+<li><a class="reference internal" href="#git">Git</a><ul>
+<li><a class="reference internal" href="#id4">Installation</a></li>
+<li><a class="reference internal" href="#premiers-pas-avec-git">Premiers pas avec git</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="about.html"
+                        title="previous chapter">Vue d&#8217;ensemble et table de matière</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="oriente_objet.html"
+                        title="next chapter">Programmation Orientée Objet</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/installation.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="oriente_objet.html" title="Programmation Orientée Objet"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="about.html" title="Vue d’ensemble et table de matière"
+             >previous</a> |</li>
+        <li><a href="index.html">Programmation Orientee Objet/Java</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, A.BELCAID.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

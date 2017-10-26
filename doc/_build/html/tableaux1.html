@@ -1,0 +1,569 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tableaux &mdash; Programmation Orientee Objet/Java</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="top" title="Programmation Orientee Objet/Java" href="index.html" />
+    <link rel="prev" title="Structures de Contrôle 1" href="structures1.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="structures1.html" title="Structures de Contrôle 1"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Programmation Orientee Objet/Java</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tableaux">
+<h1>Tableaux<a class="headerlink" href="#tableaux" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>La représentation des données se réduit aux types <strong>élémentaires</strong></p>
+<ul class="simple">
+<li>int</li>
+<li>double</li>
+<li>boolean.</li>
+</ul>
+<p>Ils permettent de représenter, dans des variables, des concepts <strong>simples</strong> du monde modélisé dans le programme :</p>
+<ul class="simple">
+<li>dimensions</li>
+<li>sommes</li>
+<li>tailles</li>
+<li>expressions logiques</li>
+<li>...</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Cependant, de nombreuses données plus <strong>sophistiquées</strong> ne se réduisent pas à un objet informatique élémentaire.</p>
+</div>
+<p>un langage de programmation évolué doit donc fournir le moyen de <strong>composer</strong> les types élémentaires pour construire des types plus complexes.</p>
+<div class="section" id="exemples-de-donnees-structurees">
+<h3>Exemples de données structurées<a class="headerlink" href="#exemples-de-donnees-structurees" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<caption>Tableaux Age</caption>
+<colgroup>
+<col width="13%" />
+<col width="12%" />
+<col width="12%" />
+<col width="10%" />
+<col width="10%" />
+<col width="12%" />
+<col width="10%" />
+<col width="10%" />
+<col width="13%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Age</td>
+<td>34</td>
+<td>12</td>
+<td>32</td>
+<td>25</td>
+<td>18</td>
+<td>19</td>
+<td>26</td>
+<td>34</td>
+</tr>
+</tbody>
+</table>
+<p><strong>structure complexe</strong></p>
+<table border="1" class="docutils">
+<caption>Étudiants</caption>
+<colgroup>
+<col width="29%" />
+<col width="17%" />
+<col width="17%" />
+<col width="37%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Etudiant</td>
+<td>Age</td>
+<td>CIN</td>
+<td>Moyenne</td>
+</tr>
+<tr class="row-even"><td>Eudiant1</td>
+<td>24</td>
+<td>3232</td>
+<td>14.5</td>
+</tr>
+<tr class="row-odd"><td>Eudiant2</td>
+<td>19</td>
+<td>3451</td>
+<td>16</td>
+</tr>
+<tr class="row-even"><td>Eudiant3</td>
+<td>25</td>
+<td>6743</td>
+<td>12.5</td>
+</tr>
+<tr class="row-odd"><td>Eudiant4</td>
+<td>28</td>
+<td>8752</td>
+<td>13</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="type-de-base-et-types-evolues">
+<h3>Type de base et types évolues<a class="headerlink" href="#type-de-base-et-types-evolues" title="Permalink to this headline">¶</a></h3>
+<p>il y a une différence importante pour le langage <strong>Java</strong> entre les variables de base et les types de <strong>bases</strong> et les types <strong>évolués</strong>.</p>
+<ul class="simple">
+<li>Toute variable de type de base stocke directement une <strong>valeur</strong>.</li>
+</ul>
+<div class="highlight-java"><div class="highlight"><pre><span class="kt">int</span> <span class="n">a</span><span class="o">=</span><span class="mi">3</span><span class="o">;</span>              <span class="c1">// la variable a stock la valeur 3</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Toute variable de type évolué, comme les <strong>tableaux</strong> ou les <strong>chaînes de caractères</strong> (String), stocke une référence(adresse) vers une valeur :</li>
+</ul>
+<div class="highlight-java"><div class="highlight"><pre><span class="n">String</span> <span class="n">ch</span><span class="o">=</span><span class="s">&quot;Message&quot;</span><span class="o">;</span>        <span class="c1">// la variable ch contient une référence vers message</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Toute variable de type évolué stocke une <strong>référence</strong> vers une valeur</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">ceci a une très grande incidence sur la sémantique des opérateurs <strong>=</strong> et <strong>==</strong> en Java !</p>
+</div>
+<p>voici un simple exemple illustratif:</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// codes/chap04/SipleVsEvolue.java</span>
+
+
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleVsEvolue</span>
+<span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="c1">//illustrer qu&#39;une variable elementaire stock une valeur</span>
+
+        <span class="kt">int</span> <span class="n">a</span><span class="o">=</span><span class="mi">3</span><span class="o">;</span>  <span class="c1">//variable a stock la valeur 3</span>
+        <span class="kt">int</span> <span class="n">b</span><span class="o">=</span><span class="n">a</span><span class="o">;</span>  <span class="c1">//b recoie la valeur de a qui est 3</span>
+        <span class="n">b</span><span class="o">=</span><span class="mi">4</span><span class="o">;</span>      <span class="c1">// ceci modifie le contenu de b et pas celle de a</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&quot;a=%d\tb=%d\n&quot;</span><span class="o">,</span><span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">);</span>
+
+        <span class="c1">//Appliquer la même traitement pour des String</span>
+        <span class="n">String</span> <span class="n">ch1</span><span class="o">=</span><span class="s">&quot;message&quot;</span><span class="o">;</span>
+        <span class="n">String</span> <span class="n">ch2</span><span class="o">=</span><span class="n">ch1</span><span class="o">;</span>       <span class="c1">//ch1 et ch2 se refère à la meme valeur</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="exemple-simple">
+<h3>Exemple Simple<a class="headerlink" href="#exemple-simple" title="Permalink to this headline">¶</a></h3>
+<p>On se propose d&#8217;écrire un programme qui demande la <em>saisi</em> d&#8217;un nombre d&#8217;employée, puis leur <strong>nombre d&#8217;article vendu</strong>, puis affiche leur <strong>moyenne</strong> mais surtout <strong>l&#8217;écart</strong> de chaque employée à la moyenne.</p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="declaration">
+<h2>Déclaration<a class="headerlink" href="#declaration" title="Permalink to this headline">¶</a></h2>
+<p>Il y as deux syntaxes générales pour déclarer un tableau en <strong>java</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre>TypeElement [] nomTableau
+TypeElement  nomTableau[]
+</pre></div>
+</div>
+<p><strong>Exemples</strong></p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kt">float</span><span class="o">[]</span> <span class="n">poids</span><span class="o">;</span>
+<span class="kt">int</span>   <span class="n">IP</span><span class="o">[];</span>
+</pre></div>
+</div>
+<div class="section" id="initialisation">
+<h3>Initialisation<a class="headerlink" href="#initialisation" title="Permalink to this headline">¶</a></h3>
+<p>Si on connaît les <strong>valeurs</strong> du tableau lors de la déclaration on peut utiliser.</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kt">int</span> <span class="n">De</span><span class="o">[</span><span class="mi">6</span><span class="o">]={</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="mi">5</span><span class="o">,</span><span class="mi">6</span><span class="o">};</span>
+
+<span class="kt">int</span> <span class="n">Reponses</span><span class="o">[]={</span><span class="mi">1</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">1</span><span class="o">}</span> <span class="c1">//java peut calculer la taille d&#39;après les éléments</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">La variable De contient une adresse : <strong>l’emplacement</strong> du tableau en mémoire !</p>
+</div>
+<p>Si on connaît pas les valeurs du tableaux lors de la <strong>déclaration</strong>.</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kt">float</span> <span class="n">notes</span><span class="o">[];</span>  <span class="c1">//déclaration</span>
+<span class="n">notes</span><span class="o">=</span><span class="k">new</span> <span class="kt">float</span><span class="o">[</span><span class="n">taille</span><span class="o">]</span>  <span class="c1">// réserver la taille au tableau</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="valeur-par-defaut">
+<h3>Valeur par défaut<a class="headerlink" href="#valeur-par-defaut" title="Permalink to this headline">¶</a></h3>
+<p>Si les valeurs du tableaux ne sont pas fournis, le tableau reçoit une valeur par <strong>défaut</strong></p>
+<table border="1" class="docutils">
+<caption>Valeur par Defaut</caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">type</th>
+<th class="head">valeur</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>int</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>float</td>
+<td>0.0</td>
+</tr>
+<tr class="row-even"><td>bloolean</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>autre</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="acces-aux-elements">
+<h3>Accès aux élements<a class="headerlink" href="#acces-aux-elements" title="Permalink to this headline">¶</a></h3>
+<p>L&#8217;accès aux éléments se fait par l&#8217;opérateur <strong>[]</strong>.</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kt">int</span> <span class="n">D</span><span class="o">[]={</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="mi">5</span><span class="o">,</span><span class="mi">6</span><span class="o">};</span>
+
+<span class="c1">//Afficher la deuxième composante de D</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">D</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
+
+<span class="c1">//Affichera le dernier élément</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">D</span><span class="o">[</span><span class="mi">5</span><span class="o">]);</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Pour un tableau de taille <strong>T</strong> les indices varient de <strong>0</strong> à <strong>T-1</strong>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="traitement">
+<h2>Traitement<a class="headerlink" href="#traitement" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="affichage-d-un-tableau">
+<h3>Affichage d&#8217;un tableau<a class="headerlink" href="#affichage-d-un-tableau" title="Permalink to this headline">¶</a></h3>
+<p>Dans cette partie on présentera des méthodes pour afficher un Tableau</p>
+<ul class="simple">
+<li>Le code suivant:</li>
+</ul>
+<div class="highlight-java"><div class="highlight"><pre><span class="kt">double</span><span class="o">[]</span> <span class="n">T</span><span class="o">={</span><span class="mf">1.2</span><span class="o">,</span><span class="mf">3.4</span><span class="o">,-</span><span class="mi">5</span><span class="o">,</span><span class="mi">9</span><span class="o">};</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">T</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>Affichera la <strong>référence</strong> du tableau <strong>T</strong>, donc une adresse.</p>
+<ul class="simple">
+<li>Donc si on veut afficher les éléments du tableau, il faudra appeler une boucle <strong>for</strong>.</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h3>Accès aux éléments<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Très souvent on voudrais accéder aux éléments d&#8217;un tableau, en effectuant une itérations sur ce tableau.</p>
+<ul class="simple">
+<li>Il existe au moins trois façons pour d&#8217;itérer sur un tableau.</li>
+</ul>
+<ol class="arabic simple">
+<li>Avec une <em>itération</em> classique <strong>for</strong>.</li>
+</ol>
+<div class="highlight-java"><div class="highlight"><pre><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">T</span><span class="o">.</span><span class="na">length</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span>
+</pre></div>
+</div>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java"><div class="highlight"><pre><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">T</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">T</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>      <span class="c1">//Afficher les éléments du tableau</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<ol class="arabic simple" start="2">
+<li>Avec des itérations sur un <strong>ensemble de valeurs</strong>.</li>
+</ol>
+<div class="highlight-java"><div class="highlight"><pre><span class="k">for</span><span class="o">(</span><span class="n">Type</span> <span class="nl">element:</span> <span class="n">Tableau</span><span class="o">)</span>
+
+    <span class="c1">//instructions</span>
+</pre></div>
+</div>
+<p><strong>Exemple</strong></p>
+<div class="highlight-java"><div class="highlight"><pre><span class="c1">//Déclarer le tableau</span>
+<span class="kt">double</span> <span class="n">T</span><span class="o">[]={</span><span class="mf">3.4</span><span class="o">,-</span><span class="mi">2</span><span class="o">,</span><span class="mi">23</span><span class="o">,</span><span class="mf">12.3</span><span class="o">};</span>
+
+<span class="c1">//boucle sur le tableau</span>
+<span class="k">for</span><span class="o">(</span><span class="kt">double</span> <span class="nl">val:</span> <span class="n">T</span><span class="o">)</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">T</span><span class="o">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Cette forme de boucle (<strong>for</strong>) contient certains <strong>limites</strong> comparée à la version classique.</p>
+</div>
+<ul class="simple">
+<li>Ne permet pas <strong>modifier</strong> le contenu du tableau.</li>
+<li>Ne permet d’itérer que sur un <strong>seul tableau</strong> à la fois.</li>
+<li>Ne permet l’accès qu’à un <strong>seul élément</strong> : on ne peut pas par exemple comparer un élément du tableau et son suivant.</li>
+<li>Itere d&#8217;un pas en <strong>avant</strong> seulement.</li>
+</ul>
+<hr class="docutils" />
+<ol class="arabic simple" start="3">
+<li>En utilisant les <strong>itérateurs</strong>, sera traité dans les derniers chapitres</li>
+</ol>
+</div>
+<div class="section" id="copie-d-un-tableau">
+<h3>Copie d&#8217;un Tableau<a class="headerlink" href="#copie-d-un-tableau" title="Permalink to this headline">¶</a></h3>
+<p>Qule sera le résultat du programme suivant:</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">//codes/chap04/TestCopie.java</span>
+
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestCopie</span>
+<span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="c1">//Déclarer un tableau A</span>
+        <span class="kt">int</span> <span class="n">t1</span><span class="o">[]={</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="mi">5</span><span class="o">,</span><span class="mi">6</span><span class="o">};</span>
+        <span class="kt">int</span> <span class="n">t2</span><span class="o">[];</span>
+
+        <span class="c1">//copie de t1 dans t2</span>
+<span class="hll">        <span class="n">t2</span><span class="o">=</span><span class="n">t1</span><span class="o">;</span>
+</span>
+        <span class="c1">//modification d&#39;un élement de t1</span>
+        <span class="n">t1</span><span class="o">[</span><span class="mi">0</span><span class="o">]=</span><span class="mi">4</span><span class="o">;</span>
+
+        <span class="c1">//Afficher t2</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">elem</span> <span class="o">:</span> <span class="n">t1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">elem</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">l&#8217;instruction t1=t2 n&#8217;affecte pas les éléments de t1 dans t2, mais juste affecte <strong>l&#8217;adresse</strong> de t1 à t2.</p>
+</div>
+<p>donc pour copier le tableaux <span class="math">\(T_1\)</span> dans <span class="math">\(T_2\)</span>, on écrit:</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">t1</span><span class="o">.</span><span class="na">length</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span>
+<span class="o">{</span>
+    <span class="n">t2</span><span class="o">[</span><span class="n">i</span><span class="o">]=</span><span class="n">t1</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="comparaison-entre-deux-tableaux">
+<h3>Comparaison entre deux tableaux<a class="headerlink" href="#comparaison-entre-deux-tableaux" title="Permalink to this headline">¶</a></h3>
+<p>idem à l&#8217;opérateur <strong>=</strong> l&#8217;opérateur <strong>==</strong> va comparer les adresses des tableaux et non leurs valeurs.</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="n">t1</span><span class="o">==</span><span class="n">t2</span><span class="o">;</span>        <span class="c1">// sera vrai, si t1 et t2 ont la même adresse.</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Donc pour <strong>comparer</strong> les valeurs d&#8217;un tableau, il faudra utiliser une boucle <strong>for</strong> voir (exercices)</p>
+</div>
+</div>
+</div>
+<div class="section" id="exercices">
+<h2>Exercices<a class="headerlink" href="#exercices" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Un coureur enregistre la distance qu&#8217;il a parcouru chaque jours dans son entraînement. il a obtenu les valeurs suivants:</li>
+</ol>
+<table border="1" class="docutils">
+<caption>Distances</caption>
+<colgroup>
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="6%" />
+<col width="10%" />
+<col width="8%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>12</td>
+<td>8</td>
+<td>11</td>
+<td>13</td>
+<td>12</td>
+<td>9</td>
+<td>10</td>
+<td>8</td>
+<td>11</td>
+<td>12</td>
+<td>10</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
+<p>écrire un programme java <strong>Distances.java</strong> pour enregistrer ces distances, et puis:</p>
+<ul class="simple">
+<li>affiche les résultats</li>
+<li>calcule somme totale qu&#8217;il a parcouru.</li>
+<li>estime une moyenne par jour.</li>
+</ul>
+<ol class="arabic simple" start="2">
+<li>Ajouter le calcul de l&#8217;élément <strong>minimal</strong> et <strong>maximal</strong> dans le tableau.</li>
+</ol>
+<dl class="docutils">
+<dt>3.(+++) Ecrire un programme qui</dt>
+<dd><ul class="first last simple">
+<li>demande à l&#8217;utilisateur d&#8217;entrer une valeur positive <span class="math">\(n_1\)</span>, qui représente la taille de votre tableau.</li>
+<li>Déclare un tableau de taille <span class="math">\(n_1\)</span>.</li>
+<li>Remplir le tableau par des valeurs <strong>aléatoires</strong> entre 1 et 6; (voir chapitre précédant)</li>
+<li>Afficher le nombre de <strong>3</strong> que vous avez obtenu.</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tableaux</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li><a class="reference internal" href="#exemples-de-donnees-structurees">Exemples de données structurées</a></li>
+<li><a class="reference internal" href="#type-de-base-et-types-evolues">Type de base et types évolues</a></li>
+<li><a class="reference internal" href="#exemple-simple">Exemple Simple</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#declaration">Déclaration</a><ul>
+<li><a class="reference internal" href="#initialisation">Initialisation</a></li>
+<li><a class="reference internal" href="#valeur-par-defaut">Valeur par défaut</a></li>
+<li><a class="reference internal" href="#acces-aux-elements">Accès aux élements</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#traitement">Traitement</a><ul>
+<li><a class="reference internal" href="#affichage-d-un-tableau">Affichage d&#8217;un tableau</a></li>
+<li><a class="reference internal" href="#id1">Accès aux éléments</a></li>
+<li><a class="reference internal" href="#copie-d-un-tableau">Copie d&#8217;un Tableau</a></li>
+<li><a class="reference internal" href="#comparaison-entre-deux-tableaux">Comparaison entre deux tableaux</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#exercices">Exercices</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="structures1.html"
+                        title="previous chapter">Structures de Contrôle 1</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/tableaux1.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="structures1.html" title="Structures de Contrôle 1"
+             >previous</a> |</li>
+        <li><a href="index.html">Programmation Orientee Objet/Java</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, A.BELCAID.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

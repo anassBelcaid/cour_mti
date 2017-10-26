@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Introduction au langage Java &mdash; Programmation Orientee Objet/Java</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="top" title="Programmation Orientee Objet/Java" href="index.html" />
+    <link rel="next" title="Premier programme" href="hello_world.html" />
+    <link rel="prev" title="Programmation Orientée Objet" href="oriente_objet.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="hello_world.html" title="Premier programme"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="oriente_objet.html" title="Programmation Orientée Objet"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Programmation Orientee Objet/Java</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="introduction-au-langage-java">
+<span id="java"></span><h1>Introduction au langage Java<a class="headerlink" href="#introduction-au-langage-java" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="historique">
+<h2>Historique<a class="headerlink" href="#historique" title="Permalink to this headline">¶</a></h2>
+<p>Java est né dans les <strong>laboratoires de Sun Microsystems</strong> en 1990 avec le JDK 1.0 (Java Development Toolkit ).</p>
+<p>C&#8217;est un langage propriétaire mais très ouvert car les sources du langage sont fournies par <strong>SUN</strong> et ont permis à d&#8217;autres sociétés comme <strong>IBM</strong> de fournir leurs propres kits de développement.</p>
+<p>Ces kits de developpement contient</p>
+<ul class="simple">
+<li>Un <strong>compilateur</strong> : <em>javac</em>.</li>
+<li>Un <strong>interpréteur</strong>    : <em>java</em>.</li>
+<li>Un <strong>visualiseur d&#8217;applets</strong>.</li>
+</ul>
+</div>
+<div class="section" id="portabilite">
+<h2>Portabilité:<a class="headerlink" href="#portabilite" title="Permalink to this headline">¶</a></h2>
+<p>Pour la plupart des langages <strong>compilés</strong>, on doit écrire un fichier source, et après le compiler pour obtenir un exécutable.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Ce exécutable est valide juste pour le processeur qui l&#8217;as crée, et donc ne sera d&#8217;aucune utilité, pour une autre <strong>architecture</strong>. ce qui oblige une recomposition du code.</p>
+</div>
+<p>Pour résoudre ce problème de <strong>Portabilité</strong>, java offre son propre mécanisme de (compilation/exécution).</p>
+<p>Quand un fichier source <em>(.java)</em> est compilé, le résultat n&#8217;est pas un <strong>exécutable</strong> pour le processeur, mais plutôt un fichier <strong>(.class)</strong>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Le fichier <em>(.class)</em> n&#8217;est pas directement exécutable par le processeur. car cette classe est <strong>identique</strong> pour toutes les machines. et sera exécuté par la <strong>machine virtuelle</strong>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Introduction au langage Java</a><ul>
+<li><a class="reference internal" href="#historique">Historique</a></li>
+<li><a class="reference internal" href="#portabilite">Portabilité:</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="oriente_objet.html"
+                        title="previous chapter">Programmation Orientée Objet</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="hello_world.html"
+                        title="next chapter">Premier programme</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/java.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="hello_world.html" title="Premier programme"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="oriente_objet.html" title="Programmation Orientée Objet"
+             >previous</a> |</li>
+        <li><a href="index.html">Programmation Orientee Objet/Java</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, A.BELCAID.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

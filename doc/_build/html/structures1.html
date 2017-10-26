@@ -1,0 +1,1079 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Structures de Contrôle 1 &mdash; Programmation Orientee Objet/Java</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="top" title="Programmation Orientee Objet/Java" href="index.html" />
+    <link rel="next" title="Tableaux" href="tableaux1.html" />
+    <link rel="prev" title="Lecture" href="lecture.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tableaux1.html" title="Tableaux"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lecture.html" title="Lecture"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Programmation Orientee Objet/Java</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="structures-de-controle-1">
+<span id="structures1"></span><h1>Structures de Contrôle 1<a class="headerlink" href="#structures-de-controle-1" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Pour qu&#8217;un programme, soit intéressant, il faut que les données puissent <strong>influencer</strong> le traitement.</li>
+</ul>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/sequentiel.png"><img alt="_images/sequentiel.png" src="_images/sequentiel.png" style="width: 420.0px; height: 278.5px;" /></a>
+<p class="caption">Relation algorithme et données</p>
+</div>
+<ul class="simple">
+<li>Les donnees d&#8217;un algorithme doivent posséder la possibilité d&#8217;influencer les <strong>instructions</strong> d&#8217;un algorithme.</li>
+</ul>
+<div class="section" id="execution-sequentielle">
+<h2>Exécution séquentielle<a class="headerlink" href="#execution-sequentielle" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Jusqu&#8217;à maintenant, nos programmes se limitaient au cas séquentiel. <em>ie</em> (commandes ligne après ligne)</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Les structure de <strong>contrôle</strong> permettent de changer ce comportement.</p>
+</div>
+<p>Il existe trois structures de contrôle:</p>
+<ol class="arabic simple">
+<li>les <strong>Branchement conditionnels</strong></li>
+<li>Les itérations, (finie)</li>
+<li>Les boucles <strong>conditionnées</strong></li>
+</ol>
+<hr class="docutils" />
+<div class="section" id="branchement-conditionnels">
+<h3>Branchement conditionnels<a class="headerlink" href="#branchement-conditionnels" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Ces instructions permettent de <strong>choisir</strong> ou de <strong>sauter</strong> quelque <em>instructions</em>, si certains <strong>conditions</strong> sont remplies. en utilisant le mot clé <strong>if</strong>.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="exemple-1">
+<h2>Exemple 1<a class="headerlink" href="#exemple-1" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// codes/chap02/TesteurNote.java</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+
+<span class="kd">public</span>  <span class="kd">class</span> <span class="nc">TesteurNote</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="c1">//variable qui va stocker la note</span>
+        <span class="kt">float</span> <span class="n">note</span><span class="o">;</span>
+
+        <span class="c1">//Construire le Scanner</span>
+        <span class="n">Scanner</span> <span class="n">input</span><span class="o">=</span><span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+
+        <span class="c1">//lecture d&#39;une note</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Donner votre note: &quot;</span><span class="o">);</span>
+        <span class="n">note</span><span class="o">=</span><span class="n">input</span><span class="o">.</span><span class="na">nextFloat</span><span class="o">();</span>
+
+
+<span class="hll">        <span class="c1">//tester la valeur de la note pour décider du shcema a afficher</span>
+</span>        <span class="k">if</span><span class="o">(</span><span class="n">note</span><span class="o">&gt;=</span><span class="mi">10</span><span class="o">)</span>
+        <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;votre note est &quot;</span><span class="o">+</span><span class="n">note</span><span class="o">);</span>
+<span class="hll">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Vous avez réussi&quot;</span><span class="o">);</span>
+</span>        <span class="o">}</span>
+        <span class="k">else</span>
+        <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Votre note est &quot;</span><span class="o">+</span><span class="n">note</span><span class="o">);</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Désole, vous devez répéter le module&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Au revoir&quot;</span><span class="o">);</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>ce code va <strong>lire</strong> la valeur de la note entrée par le clavier, et <strong>selon</strong> cette valeur, le programme va afficher un message <em>convenable</em>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">On peut ajouter <strong>autant</strong> d&#8217;instructions dans le bloc <strong>if</strong> et <strong>else</strong>.</p>
+</div>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// codes/chap02/TesteurNote2.java</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+
+<span class="kd">public</span>  <span class="kd">class</span> <span class="nc">TesteurNote2</span><span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="c1">//variable qui va stocker la note</span>
+        <span class="kt">int</span> <span class="n">note</span><span class="o">;</span>
+        <span class="c1">//Construire le Scanner</span>
+        <span class="n">Scanner</span> <span class="n">input</span><span class="o">=</span><span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+
+        <span class="c1">//lecture d&#39;une note</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Donner votre note: &quot;</span><span class="o">);</span>
+        <span class="n">note</span><span class="o">=</span><span class="n">input</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+
+        <span class="c1">//tester la valeur de la note pour décider du shcema a afficher</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">note</span><span class="o">&gt;=</span><span class="mi">10</span><span class="o">)</span>
+        <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&quot;Votre note est %d\n&quot;</span><span class="o">,</span><span class="n">note</span><span class="o">);</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Vous avez réussi&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">else</span>
+        <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&quot;Votre note est %d\n&quot;</span><span class="o">,</span><span class="n">note</span><span class="o">);</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Désole, vous devez répéter le module&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Au revoir&quot;</span><span class="o">);</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>la syntaxe <strong>générale</strong> d&#8217;un branchement conditionnel est:</p>
+<div class="highlight-python"><div class="highlight"><pre>if(condition)
+{
+    instructions
+}
+else if
+{
+    instructions
+}
+else
+{
+    instructions
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="choix-imbriquees">
+<h2>Choix imbriquées<a class="headerlink" href="#choix-imbriquees" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Les instructions dans dans le blocs <strong>if</strong> et <strong>else</strong> peuvent contenir n&#8217;importe quel code java, et donc il peuvent contenir aussi une instruction <strong>if</strong> ce qui en résulte à des <strong>choix imbriquées</strong>.</li>
+</ul>
+</div>
+<div class="section" id="exemple">
+<h2>Exemple<a class="headerlink" href="#exemple" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// codes/chap02/TesteurEgalite.java</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+
+<span class="kd">class</span> <span class="nc">TesteurEgalite</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="c1">//declarer troix entiers</span>
+
+        <span class="kt">int</span> <span class="n">d1</span><span class="o">,</span><span class="n">d2</span><span class="o">,</span><span class="n">d3</span><span class="o">;</span>
+
+        <span class="c1">//Declarer le Scanner</span>
+        <span class="n">Scanner</span> <span class="n">input</span><span class="o">=</span><span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+
+        <span class="c1">//lecture des trois entiers</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Donner 3 entiers: &quot;</span><span class="o">);</span>
+        <span class="n">d1</span><span class="o">=</span><span class="n">input</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="n">d2</span><span class="o">=</span><span class="n">input</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="n">d3</span><span class="o">=</span><span class="n">input</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+
+        <span class="c1">//tester l&#39;égalité</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">d1</span><span class="o">!=</span><span class="n">d2</span><span class="o">)</span>
+        <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&quot;%d # %d\n&quot;</span><span class="o">,</span><span class="n">d1</span><span class="o">,</span><span class="n">d2</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">else</span>
+        <span class="o">{</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">d2</span><span class="o">!=</span><span class="n">d3</span><span class="o">)</span>
+            <span class="o">{</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&quot;%d # %d\n&quot;</span><span class="o">,</span><span class="n">d2</span><span class="o">,</span><span class="n">d3</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="k">else</span>
+            <span class="o">{</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;les trois sont egals&quot;</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="operateurs-logiques">
+<h3>Opérateurs logiques<a class="headerlink" href="#operateurs-logiques" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Une condition <strong>simple</strong> compare deux expressions, en utilisant les opérateurs de <strong>comparaisons</strong></li>
+</ul>
+</div>
+</div>
+<div class="section" id="operateurs-de-comparaison">
+<h2>Opérateurs de comparaison<a class="headerlink" href="#operateurs-de-comparaison" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<caption>Opérateurs de comparaison</caption>
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Opérateur</th>
+<th class="head">signification</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&lt;</td>
+<td>inférieur à</td>
+</tr>
+<tr class="row-odd"><td>&gt;</td>
+<td>supérieur à</td>
+</tr>
+<tr class="row-even"><td>&lt;=</td>
+<td>inférieur ou égal</td>
+</tr>
+<tr class="row-odd"><td>&gt;=</td>
+<td>supérieur ou égal</td>
+</tr>
+<tr class="row-even"><td>==</td>
+<td>égale à</td>
+</tr>
+<tr class="row-odd"><td>!=</td>
+<td>différent de</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<div class="section" id="operateur-logiques">
+<h2>Opérateur logiques<a class="headerlink" href="#operateur-logiques" title="Permalink to this headline">¶</a></h2>
+<p>On peut relier des conditions <strong>simples</strong> par des opérateur <strong>logiques</strong>.</p>
+<p><strong>L&#8217;opérateur logique ET(&amp;&amp;)</strong></p>
+<p>qui est <strong>Vrai*</strong> si et seulement si tous les conditions simples sont <strong>Vraies</strong>.</p>
+<p><strong>Exemple</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre>(a&lt;b) &amp;&amp; (b&lt;c)
+</pre></div>
+</div>
+<p>sera <strong>Vrai</strong> uniquement is <strong>a&lt;b</strong> est <em>vrai</em>, et <strong>b&lt;c</strong> est <em>vrai</em>.</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="k">if</span><span class="o">((</span><span class="n">note</span><span class="o">&gt;=</span><span class="mi">0</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">note</span><span class="o">&lt;=</span><span class="mi">20</span><span class="o">))</span>
+<span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Note valide&quot;</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="k">else</span>
+<span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Note non reconnue&quot;</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p><strong>L&#8217;opérateur logique OU</strong></p>
+<p>Est <strong>Vrai*</strong> si  <em>seulement l&#8217;une*</em> des conditions simples est <strong>Vraie</strong>.</p>
+<p><strong>Exemple</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre>(m&gt;0) &amp;&amp; (m&gt;0)
+</pre></div>
+</div>
+<p>sera <strong>Vrai</strong> l&#8217;une des valeurs <strong>m</strong> ou <strong>n</strong> est positive.</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="k">if</span><span class="o">((</span><span class="n">n</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">m</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">))</span>
+<span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;L&#39;une des valeurs est positive&quot;</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="k">else</span>
+<span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;les deux valeurs sont négatifs&quot;</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<caption>Table logique</caption>
+<colgroup>
+<col width="18%" />
+<col width="20%" />
+<col width="27%" />
+<col width="35%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">P</th>
+<th class="head">Q</th>
+<th class="head">P et Q</th>
+<th class="head">P ou Q</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Vrai</td>
+<td>Vrai</td>
+<td>Vrai</td>
+<td>Vrai</td>
+</tr>
+<tr class="row-odd"><td>Vrai</td>
+<td>Faux</td>
+<td>Faux</td>
+<td>Vrai</td>
+</tr>
+<tr class="row-even"><td>Faux</td>
+<td>Vrai</td>
+<td>Faux</td>
+<td>Vrai</td>
+</tr>
+<tr class="row-odd"><td>Faux</td>
+<td>Faux</td>
+<td>Faux</td>
+<td>Faux</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="erreurs-classiques">
+<h3>Erreurs classiques<a class="headerlink" href="#erreurs-classiques" title="Permalink to this headline">¶</a></h3>
+<p>Ici on regroupe quelque erreurs de débutants.</p>
+</div>
+</div>
+<div class="section" id="test-d-egalite">
+<h2>test d&#8217;égalité<a class="headerlink" href="#test-d-egalite" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-java"><div class="highlight"><pre><span class="k">if</span><span class="o">(</span><span class="n">a</span><span class="o">=</span><span class="n">b</span><span class="o">)</span>  <span class="c1">// !!! ne sera pas accepté par le compilateur</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="if-et">
+<h2>if et ;<a class="headerlink" href="#if-et" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-java"><div class="highlight"><pre><span class="k">if</span><span class="o">(</span><span class="n">a</span><span class="o">==</span><span class="mi">2</span><span class="o">);</span> <span class="o">!!</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;a=&quot;</span><span class="o">+</span><span class="mi">2</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>Dans ce cas la message sera <strong>toujours</strong> affiché, quelque soit la valeur de <strong>a</strong>.</p>
+</div>
+<div class="section" id="else-sans-accolade">
+<h2>else sans accolade<a class="headerlink" href="#else-sans-accolade" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-java"><div class="highlight"><pre><span class="k">if</span><span class="o">(</span> <span class="n">a</span><span class="o">&lt;</span><span class="n">b</span><span class="o">)</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;a&lt;b&quot;</span><span class="o">);</span>
+    <span class="n">max</span><span class="o">=</span><span class="n">b</span><span class="o">;</span>
+<span class="k">else</span>  <span class="c1">//!!</span>
+
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;a&gt;b&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>Donnera un message d&#8217;erreur.</p>
+<div class="section" id="exercices-d-applications">
+<h3>Exercices d&#8217;applications<a class="headerlink" href="#exercices-d-applications" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p class="first">Ecrire un programme <strong>MoyenneModule</strong> qui demande une <strong>note</strong> à l&#8217;utilisateur,et vérifie s&#8217;ils sont valides. ie( <span class="math">\(\in [0,20]\)</span>).</p>
+</li>
+<li><p class="first">modifier <strong>MoyenneModule</strong> pour vérifier <strong>deux</strong> notes.</p>
+</li>
+<li><p class="first">Calculer la moyenne des deux notes, puis informer l&#8217;utilisateur s&#8217;il a validé le module ou non.:</p>
+<div class="highlight-python"><div class="highlight"><pre>moyenne &gt;=12     ===&gt; validé
+sinon            ===&gt; non validé
+</pre></div>
+</div>
+</li>
+<li><p class="first">Modifier le programme <strong>TesteurEgalite.java</strong> en ajoutant un test <em>complexe</em> utilisant <strong>Et</strong>.</p>
+</li>
+<li><p class="first">Écrivez un programme Java qui lit un nombre et indique s&#8217;il est positif, négatif ou s&#8217;il vaut zéro et s&#8217;il est pair ou impair.:</p>
+<div class="highlight-python"><div class="highlight"><pre>Entrez un nombre entier: 5
+Le nombre est positif et impair
+
+Entrez un nombre entier: -4
+Le nombre est négatif et pair
+
+Entrez un nombre entier: 0
+Le nombre est zéro (et il est pair)
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<hr class="docutils" />
+<div class="section" id="les-boucles-finies">
+<h3>Les boucles finies<a class="headerlink" href="#les-boucles-finies" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Souvent dans un programme, on a besoin de <strong>répéter</strong> certains instructions pour aboutir à un résultat.</li>
+</ul>
+<p><strong>Exemple:</strong></p>
+<p>Afficher les carrés des 5 premiers entiers de <span class="math">\(\mathbb{N}\)</span>:</p>
+<div class="highlight-python"><div class="highlight"><pre>le carré de 0   est    0
+le carré de 1   est    1
+le carré de 2   est    4
+le carré de 3   est    9
+le carré de 4   est    16
+</pre></div>
+</div>
+<p>On peut obtenir ce résultat en utilisant une boucle <strong>for</strong> comme suit.</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;le carré de &quot;</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="s">&quot; est &quot;</span><span class="o">+</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>La boucle <strong>for</strong> contient trois parties qui sont</p>
+<ul>
+<li><p class="first">initialisation</p>
+<blockquote>
+<div><p>exécutée <em>une seule</em> fois au début de la boucle.</p>
+</div></blockquote>
+</li>
+<li><p class="first">Test d&#8217;arrêt:</p>
+<blockquote>
+<div><p>qui sera testé <strong>avant</strong> l&#8217;exécution de chaque tour de la boucle.</p>
+</div></blockquote>
+</li>
+<li><p class="first">Incrémentation:</p>
+<blockquote>
+<div><p>Exécutée à la fin de chaque tour, elle permet de <strong>changer</strong> la valeur de <em>compteur</em>.</p>
+</div></blockquote>
+</li>
+</ul>
+<p>Donc la syntaxe générale d&#8217;une boucle for en <strong>Java</strong> est:</p>
+<div class="highlight-python"><div class="highlight"><pre>for(Initialisation; test d&#39;arrêt; Incrémentation)
+{
+             Bloc d&#39;instructions;
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="exemple-2">
+<h2>Exemple 2:<a class="headerlink" href="#exemple-2" title="Permalink to this headline">¶</a></h2>
+<p>Voici un deuxième exemple de la <strong>table de multiplication</strong> de <span class="math">\(7\)</span>.</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// codes/chap02/TableMult7.java</span>
+
+
+<span class="kd">class</span> <span class="nc">TableMult7</span>  <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Table de multiplication de 7&quot;</span><span class="o">);</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">7</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;5 *&quot;</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="s">&quot; = &quot;</span><span class="o">+</span><span class="mi">5</span><span class="o">*</span><span class="n">i</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Affichera</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">5</span> <span class="o">*</span><span class="mi">1</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="mi">5</span> <span class="o">*</span><span class="mi">2</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="mi">5</span> <span class="o">*</span><span class="mi">3</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="mi">5</span> <span class="o">*</span><span class="mi">4</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="mi">5</span> <span class="o">*</span><span class="mi">5</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="mi">5</span> <span class="o">*</span><span class="mi">6</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="mi">5</span> <span class="o">*</span><span class="mi">7</span> <span class="o">=</span> <span class="mi">35</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Le <strong>bloc d&#8217;instruction</strong> de for peut contenir n&#8217;importe quel <em>code</em> java.</p>
+</div>
+<p>Par exemple il peut contenir une instruction <strong>if</strong></p>
+<p><strong>Question</strong></p>
+<p>Quel sera le résultat du programme suivant:</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span>
+<span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+
+    <span class="k">if</span><span class="o">(</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">&quot;p&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="d-autre-exemples">
+<h2>D&#8217;autre exemples<a class="headerlink" href="#d-autre-exemples" title="Permalink to this headline">¶</a></h2>
+<p><strong>Saut différent</strong></p>
+<div class="highlight-java"><div class="highlight"><pre><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">p</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">p</span><span class="o">&lt;</span><span class="mi">10</span><span class="o">;</span><span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="o">+</span><span class="mi">2</span><span class="o">)</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">p</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>Affichera:</p>
+<div class="highlight-python"><div class="highlight"><pre>0  2  4  6  8
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Dans cet exemple <strong>p=p+2</strong> pourrait être ecrit par <strong>p+=2</strong></p>
+</div>
+<p><strong>Décrémentation</strong></p>
+<div class="highlight-java"><div class="highlight"><pre><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="o">;</span><span class="n">k</span><span class="o">&gt;</span><span class="mi">5</span><span class="o">;</span><span class="n">k</span><span class="o">--)</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">k</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>Affichera:</p>
+<div class="highlight-python"><div class="highlight"><pre>10 9 8 7 6
+</pre></div>
+</div>
+<p><strong>Exemple classique</strong></p>
+<p>Dans ce simple programme on se propose de calculer la <strong>moyenne</strong> de <span class="math">\(10\)</span> valeurs entrées par le clavier.</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// codes/chap02/Moyenne10.java</span>
+
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+
+<span class="kd">class</span> <span class="nc">Moyenne10</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="c1">//declarer la variable de lecture</span>
+        <span class="kt">double</span> <span class="n">note</span><span class="o">;</span>
+
+        <span class="c1">//declarer la somme et la moyenne</span>
+        <span class="kt">double</span> <span class="n">somme</span><span class="o">,</span><span class="n">moyenne</span><span class="o">;</span>
+
+        <span class="c1">//construir un lecteur input avec le scanner</span>
+        <span class="n">Scanner</span> <span class="n">clavier</span><span class="o">=</span><span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="c1">//Toujours inialiser la somme à 0</span>
+        <span class="n">somme</span><span class="o">=</span><span class="mf">0.0</span><span class="o">;</span>
+
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">5</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span>
+        <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">&quot;Enter la note &quot;</span><span class="o">+</span><span class="n">i</span><span class="o">+</span> <span class="s">&quot;: &quot;</span><span class="o">);</span>
+            <span class="n">note</span><span class="o">=</span><span class="n">clavier</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+            <span class="c1">// Ajouter la note lue à la somme</span>
+            <span class="n">somme</span><span class="o">+=</span><span class="n">note</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">//Calculer la moyenne(somme/5)</span>
+        <span class="n">moyenne</span><span class="o">=</span><span class="n">somme</span><span class="o">/</span><span class="mi">5</span><span class="o">;</span>
+
+        <span class="c1">//Afficher la moyenne</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;votre moyenne est &quot;</span><span class="o">+</span><span class="n">moyenne</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p><strong>boucle For imbriquées</strong></p>
+<p>On peut introduit des boucle <strong>for</strong> à l&#8217;intérieur d&#8217;une boucle <strong>for</strong>.</p>
+</div>
+<div class="section" id="id1">
+<h2>Exemple<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Qeul sera le résultat du programme suivant:</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span>
+    <span class="o">{</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">4</span><span class="o">;</span><span class="n">j</span><span class="o">++)</span>
+        <span class="o">{</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">i</span><span class="o">==</span><span class="n">j</span><span class="o">)</span>
+            <span class="o">{</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">&quot;*&quot;</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="k">else</span>
+            <span class="o">{</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">&quot;j&quot;</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+</pre></div>
+</div>
+<div class="section" id="exercices">
+<h3>Exercices<a class="headerlink" href="#exercices" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>(+) Ecrire un programme pour afficher les nombres <strong>impairs</strong> compris entre <span class="math">\(0\)</span> et <span class="math">\(30\)</span>.</li>
+<li>(++) Ecrire un programme pour calcule le produit entre deux entiers a et b positifs. en utilisant la formule suivante:</li>
+</ol>
+<div class="math">
+\[ab=\underbrace{a+a+\ldots+a}_{b \; fois}\]</div>
+<ol class="arabic simple" start="3">
+<li>(+++)Ecrire un programme pour afficher la <strong>table de multiplication</strong>.</li>
+</ol>
+</div>
+<hr class="docutils" />
+<div class="section" id="boucles-conditionnelles">
+<h3>Boucles conditionnelles<a class="headerlink" href="#boucles-conditionnelles" title="Permalink to this headline">¶</a></h3>
+<p>Selon le problème à résoudre. il arrive qu&#8217;on <strong>ne connaisse</strong> pas combien de fois la <em>boucle*</em> devra être exécutée.</p>
+<p>Dans ce cas, on utilise une <strong>boucle conditionnelle</strong>, ou boucle <strong>while</strong>, <strong>do .. while</strong>.</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>Exemple:<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Pour illustrer l&#8217;utilisation d&#8217;une boucle conditionnelle, on présentera un programme qui  as <strong>besoin</strong> que qu&#8217;une valeur <em>nbNotes</em> soit <strong>positive</strong>.</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/** Moyenne non controllée*/</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Moyenne</span><span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="c1">//lecture des nombres de notes</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Donner le nombre de notes: &quot;</span><span class="o">);</span>
+        <span class="n">Scanner</span> <span class="n">clavier</span><span class="o">=</span><span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">nbNotes</span><span class="o">=</span><span class="n">clavier</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+
+        <span class="kt">float</span> <span class="n">somme</span><span class="o">,</span><span class="n">moyenne</span><span class="o">;</span>
+
+        <span class="c1">//vérifier si le nombre de notes est &gt;0</span>
+
+        <span class="k">if</span><span class="o">(</span><span class="n">nbNotes</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">)</span>
+        <span class="o">{</span>
+
+            <span class="c1">//executer une boule for pour calculer la moyenne</span>
+            <span class="n">somme</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">nbNotes</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span>
+            <span class="o">{</span>
+                <span class="c1">//lire la note i</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Donner une note: &quot;</span><span class="o">);</span>
+                <span class="n">somme</span><span class="o">+=</span><span class="n">clavier</span><span class="o">.</span><span class="na">nextFloat</span><span class="o">();</span>
+            <span class="o">}</span>
+
+            <span class="c1">//calcul de la moyenne</span>
+            <span class="n">moyenne</span><span class="o">=</span><span class="n">somme</span><span class="o">/</span><span class="n">nbNotes</span><span class="o">;</span>
+
+            <span class="c1">//Afficher la moyenne</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Votre moyenne est &quot;</span><span class="o">+</span><span class="n">moyenne</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Ici une valeur <strong>négative</strong> de l&#8217;utilisateur n&#8217;aura aucun sens. donc on se propose de <strong>forcer</strong> une condition sur cette valeur.</p>
+<div class="math">
+\[\begin{split}nbNotes&gt;0\end{split}\]</div>
+<p>Donc on va introduire une <strong>boucle</strong> qui va se répéter <strong>tant que</strong> cette valeur est <strong>négative</strong>.</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="k">do</span>
+<span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Entrer le nombre de notes:&quot;</span><span class="o">);</span>
+    <span class="n">nbNotes</span><span class="o">=</span><span class="n">clavier</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+<span class="o">}</span><span class="k">while</span><span class="o">(</span><span class="n">nbNotes</span><span class="o">&lt;=</span><span class="mi">0</span><span class="o">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li>Modifier le programme <strong>Moyenne1.java</strong> pour refuser les valeurs négatifs de nbNotes</li>
+</ol>
+</div>
+<div class="section" id="syntaxe-generale">
+<h2>Syntaxe générale:<a class="headerlink" href="#syntaxe-generale" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-java"><div class="highlight"><pre><span class="k">do</span>
+<span class="o">{</span>
+    <span class="n">instructions</span><span class="o">;</span>
+
+<span class="o">}</span><span class="k">while</span><span class="o">(</span><span class="n">condition</span><span class="o">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>La condition peut utiliser des <em>opérateurs logiques</em>.</li>
+<li>la parenthèse autour de la condition sont <strong>obligatoires</strong>.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Les instructions à l&#8217;intérieur de <strong>do while</strong> seront toujours exécutées <strong>au moins un fois</strong></p>
+</div>
+</div>
+<div class="section" id="boucle-while">
+<h2>Boucle while<a class="headerlink" href="#boucle-while" title="Permalink to this headline">¶</a></h2>
+<p>Dans certains conditions, on veut tester les conditions <strong>a priori</strong> avant d&#8217;enter dans le corps de la boucle. dans ce cas on utilise une deuxième forme de la boucle <strong>while</strong>.</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="k">while</span><span class="o">(</span><span class="n">condition</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="n">instructions</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Le principe est <strong>similaire</strong>, avec la seule différence que le test sera testé <strong>avant</strong> d&#8217;enter dans la boucle.</li>
+<li>Donc les instructions de while peuvent <strong>ne jamais</strong> être exécutées.</li>
+</ul>
+</div>
+<div class="section" id="exemples">
+<h2>exemples<a class="headerlink" href="#exemples" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-java"><div class="highlight"><pre><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">100</span><span class="o">;</span>
+<span class="k">do</span>
+<span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Bonjour&quot;</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">while</span><span class="o">(</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>Le programme affichera:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Bonjour</span>
+</pre></div>
+</div>
+<p>par contre le programme suivant:</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">100</span><span class="o">;</span>
+
+<span class="k">while</span><span class="o">(</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Bonjour&quot;</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p><strong>N&#8217;affichera</strong> rien car les instructions de la boucle ne sont jamais exécutées.</p>
+<hr class="docutils" />
+<div class="section" id="exercice-d-application">
+<h3>Exercice d&#8217;application<a class="headerlink" href="#exercice-d-application" title="Permalink to this headline">¶</a></h3>
+<p>Dans cet exercice on se propose, de développer le code d&#8217;un jeu <strong>simple</strong> de devinette d&#8217;un nombre entier. où la machine va choisir un nombre <em>entier</em> dans <span class="math">\([0,10]\)</span>, et à l&#8217;utilisateur de deviner cette valeur.</p>
+<ol class="arabic simple">
+<li>Pour générer une valeur <strong>aléatoire</strong> entière on utilisera la <em>classe</em> <strong>Random</strong> du package <em>java.util</em></li>
+</ol>
+<div class="highlight-java"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>
+
+<span class="c1">//instancier un object Random</span>
+<span class="n">Random</span> <span class="n">R</span><span class="o">=</span><span class="k">new</span> <span class="n">Random</span><span class="o">();</span>
+
+<span class="c1">//générer un nombre &lt; n</span>
+<span class="kt">int</span> <span class="n">a</span><span class="o">=</span><span class="n">R</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="n">n</span><span class="o">);</span>
+</pre></div>
+</div>
+<ol class="arabic" start="2">
+<li><p class="first">Ecrire un programme <strong>JeuDevinette.java</strong> pour générer et <em>afficher</em> 15 valeurs aléatoires inférieurs à <span class="math">\(10\)</span>.</p>
+</li>
+<li><p class="first">Le but du jeu est de générer une valeur aléatoire &lt;10, et demander à l&#8217;utilisateur de <strong>deviner</strong> ce nombre.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Au cas d&#8217;égalité, le  jeu s&#8217;arrête.</li>
+<li>Au cas &lt;nombre, on informe l&#8217;utilisateur qu&#8217;il doit donner une valeur <strong>inférieure</strong>.</li>
+<li>Au cas &gt;nombre, on informe l&#8217;utilisetuer qu&#8217;il doit donner une valeur <strong>supérieure</strong>.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Modifier votre programme pour limiter le nombre d&#8217;essai à <strong>Trois</strong> essais maximum.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Structures de Contrôle 1</a><ul>
+<li><a class="reference internal" href="#execution-sequentielle">Exécution séquentielle</a><ul>
+<li><a class="reference internal" href="#branchement-conditionnels">Branchement conditionnels</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#exemple-1">Exemple 1</a></li>
+<li><a class="reference internal" href="#choix-imbriquees">Choix imbriquées</a></li>
+<li><a class="reference internal" href="#exemple">Exemple</a><ul>
+<li><a class="reference internal" href="#operateurs-logiques">Opérateurs logiques</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#operateurs-de-comparaison">Opérateurs de comparaison</a></li>
+<li><a class="reference internal" href="#operateur-logiques">Opérateur logiques</a><ul>
+<li><a class="reference internal" href="#erreurs-classiques">Erreurs classiques</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#test-d-egalite">test d&#8217;égalité</a></li>
+<li><a class="reference internal" href="#if-et">if et ;</a></li>
+<li><a class="reference internal" href="#else-sans-accolade">else sans accolade</a><ul>
+<li><a class="reference internal" href="#exercices-d-applications">Exercices d&#8217;applications</a></li>
+<li><a class="reference internal" href="#les-boucles-finies">Les boucles finies</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#exemple-2">Exemple 2:</a></li>
+<li><a class="reference internal" href="#d-autre-exemples">D&#8217;autre exemples</a></li>
+<li><a class="reference internal" href="#id1">Exemple</a><ul>
+<li><a class="reference internal" href="#exercices">Exercices</a></li>
+<li><a class="reference internal" href="#boucles-conditionnelles">Boucles conditionnelles</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2">Exemple:</a></li>
+<li><a class="reference internal" href="#syntaxe-generale">Syntaxe générale:</a></li>
+<li><a class="reference internal" href="#boucle-while">Boucle while</a></li>
+<li><a class="reference internal" href="#exemples">exemples</a><ul>
+<li><a class="reference internal" href="#exercice-d-application">Exercice d&#8217;application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lecture.html"
+                        title="previous chapter">Lecture</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="tableaux1.html"
+                        title="next chapter">Tableaux</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/structures1.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="tableaux1.html" title="Tableaux"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lecture.html" title="Lecture"
+             >previous</a> |</li>
+        <li><a href="index.html">Programmation Orientee Objet/Java</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, A.BELCAID.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

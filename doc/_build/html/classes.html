@@ -1,0 +1,566 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Classes, Objets et méthodes &mdash; Programmation Orientee Objet/Java</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="top" title="Programmation Orientee Objet/Java" href="index.html" />
+    <link rel="prev" title="Fonctions et Méthodes" href="fonctions.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="fonctions.html" title="Fonctions et Méthodes"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Programmation Orientee Objet/Java</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="classes-objets-et-methodes">
+<h1>Classes, Objets et méthodes<a class="headerlink" href="#classes-objets-et-methodes" title="Permalink to this headline">¶</a></h1>
+<div class="topic">
+<p class="topic-title first">Objectifs</p>
+<ul class="simple">
+<li>Définir des <strong>classes</strong> et créer des objets.</li>
+<li>Ajouter un comportement et une intelligence à une classe à travers les <strong>méthodes</strong></li>
+<li>Appeler des méthodes d&#8217;un objet pour compléter une tache.</li>
+<li>Utilisation de plusieurs <strong>constructeurs</strong>.</li>
+<li><strong>Encapsuler</strong> les données importantes.</li>
+</ul>
+</div>
+<div class="section" id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
+<p>Une classe est un <strong>prototype</strong> pour plusieurs <em>objets</em> qui partagent les mêmes <em>attributs</em> et <em>comportement</em> (fonctionnalités).</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/Jour.png"><img alt="text if image isn't found" src="_images/Jour.png" style="width: 440.0px; height: 169.6px;" /></a>
+<p class="caption">Jour</p>
+</div>
+<p><strong>Exemples</strong></p>
+<p>Voici quelque exemples de classes.</p>
+<ul class="simple">
+<li>Point : pour définir un point dans le plan <span class="math">\(P(x,y)\)</span>.</li>
+<li>Personne: définition d&#8217;une personne.</li>
+<li>Voiture.</li>
+</ul>
+<p>En uml on peut représenter ces classes, avec un diagramme de classes:</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/classes1.png"><img alt="text if image isn't found" src="_images/classes1.png" style="width: 560.0px; height: 180.0px;" /></a>
+<p class="caption">Diagram des classes</p>
+</div>
+</div>
+<div class="section" id="point">
+<h2>Point<a class="headerlink" href="#point" title="Permalink to this headline">¶</a></h2>
+<p>En se basant sur le diagramme <strong>UML</strong>, voici la définition de la classe Point</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">Point</span>
+<span class="o">{</span>
+    <span class="c1">//Attributs</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="n">x</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="n">y</span><span class="o">;</span>
+
+
+    <span class="c1">//Constructeurs</span>
+    <span class="kd">public</span> <span class="nf">Point</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">x</span><span class="o">=</span><span class="mf">0.0</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">y</span><span class="o">=</span><span class="mf">0.0</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">Point</span><span class="o">(</span><span class="kt">double</span> <span class="n">x</span><span class="o">,</span><span class="kt">double</span> <span class="n">y</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">x</span><span class="o">=</span><span class="n">x</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">y</span><span class="o">=</span><span class="n">y</span><span class="o">;</span>
+    <span class="o">}</span>
+
+
+    <span class="c1">//methode pour afficher le point</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afficher</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&quot;P(%.2f,%.2f)\n&quot;</span><span class="o">,</span><span class="k">this</span><span class="o">.</span><span class="na">x</span><span class="o">,</span><span class="k">this</span><span class="o">.</span><span class="na">y</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">deplacer</span><span class="o">(</span><span class="kt">double</span> <span class="n">dx</span><span class="o">,</span><span class="kt">double</span> <span class="n">dy</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="c1">//fonction pour déplacer le point</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">x</span><span class="o">+=</span><span class="n">dx</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">y</span><span class="o">+=</span><span class="n">dy</span><span class="o">;</span>
+    <span class="o">}</span>
+
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Un programme qui va utiliser cette classe.</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">//codes/chap06/PointDriver.java</span>
+
+<span class="kd">class</span> <span class="nc">PointDriver</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="c1">//Creation d&#39;un object point</span>
+
+        <span class="n">Point</span> <span class="n">A</span><span class="o">=</span><span class="k">new</span> <span class="n">Point</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span><span class="mi">4</span><span class="o">);</span>
+
+        <span class="c1">//Afficher le point</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Les coordonées du points sont : &quot;</span><span class="o">);</span>
+        <span class="n">A</span><span class="o">.</span><span class="na">afficher</span><span class="o">();</span>
+
+        <span class="c1">//Déplacer le point</span>
+        <span class="n">A</span><span class="o">.</span><span class="na">deplacer</span><span class="o">(</span><span class="mi">1</span><span class="o">,-</span><span class="mi">3</span><span class="o">);</span>
+
+        <span class="c1">//Afficher les nouvelles coordonnées du point</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Le nouveau point:&quot;</span><span class="o">);</span>
+        <span class="n">A</span><span class="o">.</span><span class="na">afficher</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p><strong>Question</strong></p>
+<ol class="arabic simple">
+<li>Ajouter une lettre comme nom du point.</li>
+<li>Ajouter une méthode pour changer le nom du point.</li>
+<li>Avec cette implémentation, est ce qu&#8217;un point connaît son <strong>symétrique</strong>.</li>
+</ol>
+<div class="math">
+\[si A(x,y) \Longrightarrow S(-x,-y)\]</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="client-bancaire">
+<h2>Client Bancaire<a class="headerlink" href="#client-bancaire" title="Permalink to this headline">¶</a></h2>
+<p>Construire en java une classe qui représente un client dans une banque.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/Client.png"><img alt="text if image isn't found" src="_images/Client.png" style="width: 308.0px; height: 308.0px;" /></a>
+<p class="caption">Client diagramme</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>L&#8217;identifiant <strong>id</strong> du client doit vérifier :<span class="math">\(id \in [1,15]\)</span>. et <em>ne peut pas</em> être modifié une foie un client est enregistré.</li>
+<li>On doit pas accéder et changer au compte directement mais a travers une <strong>interface</strong> (API).</li>
+<li>Dans le diagramme <em>UML</em>, lister les fonctions qui indique cette <strong>interface</strong>.</li>
+</ul>
+</div>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">//codes/chap06/Client.java</span>
+
+<span class="cm">/**</span>
+<span class="cm">*   Class Client qui représente un client dans une banque</span>
+<span class="cm">*/</span>
+<span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">Client</span> <span class="o">{</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    * Attributs de la classe</span>
+<span class="cm">    */</span>
+
+<span class="hll">    <span class="kd">private</span> <span class="kt">int</span> <span class="n">id</span><span class="o">;</span>
+</span><span class="hll">    <span class="kd">private</span> <span class="kt">double</span> <span class="n">compte</span><span class="o">;</span>
+</span>    <span class="kd">public</span> <span class="n">String</span> <span class="n">nom</span><span class="o">;</span>
+
+
+    <span class="cm">/**</span>
+<span class="cm">    *  Constructeurs</span>
+<span class="cm">    */</span>
+    <span class="n">Client</span><span class="o">(</span><span class="n">String</span> <span class="n">nom</span><span class="o">,</span><span class="kt">double</span> <span class="n">compte</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="c1">//constructeur avec un nom et compte</span>
+    <span class="o">}</span>
+
+    <span class="n">Client</span><span class="o">(</span><span class="n">String</span> <span class="n">nom</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="c1">//Constructeur par un nom</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    * Méthodes</span>
+<span class="cm">    */</span>
+
+    <span class="c1">//getter pour compte</span>
+    <span class="kt">double</span> <span class="nf">getCompte</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">//code</span>
+    <span class="o">}</span>
+
+
+    <span class="kt">void</span> <span class="nf">ajouterSomme</span><span class="o">(</span><span class="kt">double</span> <span class="n">ajout</span><span class="o">)</span>
+    <span class="o">{</span>
+       <span class="c1">//code</span>
+    <span class="o">}</span>
+
+    <span class="kt">void</span> <span class="nf">retrancherSomme</span><span class="o">(</span><span class="kt">double</span> <span class="n">retrait</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="c1">//code</span>
+    <span class="o">}</span>
+
+    <span class="kt">void</span> <span class="nf">afficher</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">//code</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Programme utilisant cette classe.</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">//codes/chap06/ClientDriver.java</span>
+
+
+<span class="kd">class</span> <span class="nc">ClientDriver</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="c1">//Construire un client simple client</span>
+        <span class="n">Client</span> <span class="n">cl1</span><span class="o">=</span><span class="k">new</span> <span class="n">Client</span><span class="o">(</span><span class="s">&quot;MTI&quot;</span><span class="o">,</span><span class="mi">4000</span><span class="o">);</span>
+        <span class="n">cl1</span><span class="o">.</span><span class="na">afficher</span><span class="o">();</span>
+
+        <span class="c1">//Changer le compte manuellement donnera une erreur</span>
+<span class="hll">        <span class="c1">//cl1.compte=cl1.compte+1000;</span>
+</span>
+        <span class="c1">//la bonne méthode est d&#39;utiliser le mutateur</span>
+        <span class="n">cl1</span><span class="o">.</span><span class="na">ajouterSomme</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+        <span class="n">cl1</span><span class="o">.</span><span class="na">afficher</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">La ligne 13 du programme essaie de modifier un attribut <strong>privé</strong>, ce qui va générer une erreur.</p>
+</div>
+</div>
+<div class="section" id="attributs-statiques">
+<h2>Attributs statiques<a class="headerlink" href="#attributs-statiques" title="Permalink to this headline">¶</a></h2>
+<p>Chaque Objet d&#8217;une classe possède sa propre <strong>copie</strong> des attributs de la classes. mais dans certains cas, juste une <strong>seule copie</strong> de la classe pourra être <em>partagée</em> entre tous objets.</p>
+<p>Un attribut <strong>statique</strong>, ou <em>attribut de la classe</em> est utilisé dans ces cas. pour stocker une information générale de la classe et sera partagé par tous les <strong>instances</strong> de cette classe.</p>
+<p>La déclaration de type de membre est réalisé par le mot clé <strong>static</strong>.</p>
+<div class="section" id="exemples">
+<h3>Exemples<a class="headerlink" href="#exemples" title="Permalink to this headline">¶</a></h3>
+<p>Quelque exemples des membres statiques.</p>
+<ul class="simple">
+<li>Nombre de Clients dans une banque.</li>
+<li>Type de stockage d&#8217;une structure de donnée.</li>
+<li>Type d&#8217;orientation des formes géométriques.</li>
+</ul>
+<div class="highlight-java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">Client</span>
+<span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">nb_Clients</span><span class="o">=</span><span class="mf">0.0</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">nom</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">compte</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exemple-illustratif">
+<h3>Exemple illustratif<a class="headerlink" href="#exemple-illustratif" title="Permalink to this headline">¶</a></h3>
+<p>Dans cet exemple on se propose de créer un modèle simple d&#8217;une classe <strong>Guerrier</strong>.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/guerrier1.png"><img alt="text if image isn't found" src="_images/guerrier1.png" style="width: 336.0px; height: 288.0px;" /></a>
+<p class="caption">Diagramme de la classe Guerrier. (les membres statiques sont en italiques)</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Pour calculer les points d&#8217;attaques d&#8217;un guerrier en utilise la formule suivante:</p>
+<div class="last highlight-python"><div class="highlight"><pre>Ps_attaques=(puissance*1000)+300*nbrGuerrier.
+</pre></div>
+</div>
+</div>
+<p class="centered">
+<strong>Exercice</strong></p><ol class="arabic simple">
+<li>Ajouter une méthode pour afficher le nombre de guerrier?</li>
+<li>Que remarquez vous?</li>
+</ol>
+</div>
+<div class="section" id="classe-math">
+<h3>Classe math<a class="headerlink" href="#classe-math" title="Permalink to this headline">¶</a></h3>
+<p>La classe <strong>math</strong> utilise la notion de</p>
+<ul class="simple">
+<li>membre statique</li>
+<li>fonctions statiques</li>
+</ul>
+<p>Pour fournir une implémentation pour la plupart des  <strong>constantes</strong> et <strong>fonctions</strong> mathématiques usuelles.</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MathExemples</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="c1">//Afficher la valeur de pi</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;valeur de pi= &quot;</span><span class="o">+</span><span class="n">Math</span><span class="o">.</span><span class="na">PI</span><span class="o">);</span>
+
+        <span class="c1">//Afficher la valeur de e</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;valeur de e= &quot;</span><span class="o">+</span><span class="n">Math</span><span class="o">.</span><span class="na">E</span><span class="o">);</span>
+
+
+        <span class="c1">//Quelque fonctions usuels</span>
+        <span class="kt">double</span> <span class="n">pi</span><span class="o">=</span><span class="n">Math</span><span class="o">.</span><span class="na">PI</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;cos(3pi/2)= &quot;</span><span class="o">+</span><span class="n">Math</span><span class="o">.</span><span class="na">cos</span><span class="o">(</span><span class="mi">3</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="mf">2.0</span><span class="o">));</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;sin(3pi/2= &quot;</span><span class="o">+</span><span class="n">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span><span class="mi">3</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="mf">2.0</span><span class="o">));</span>
+
+        <span class="c1">//fonction logarithmes</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Log(430)=&quot;</span><span class="o">+</span><span class="n">Math</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="mi">430</span><span class="o">));</span>
+
+
+        <span class="c1">//fonction exponentielle</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;exp(-500)= &quot;</span><span class="o">+</span><span class="n">Math</span><span class="o">.</span><span class="na">exp</span><span class="o">(-</span><span class="mi">500</span><span class="o">));</span>
+
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="union-find">
+<h2>Union_Find<a class="headerlink" href="#union-find" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Classes, Objets et méthodes</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#point">Point</a></li>
+<li><a class="reference internal" href="#client-bancaire">Client Bancaire</a></li>
+<li><a class="reference internal" href="#attributs-statiques">Attributs statiques</a><ul>
+<li><a class="reference internal" href="#exemples">Exemples</a></li>
+<li><a class="reference internal" href="#exemple-illustratif">Exemple illustratif</a></li>
+<li><a class="reference internal" href="#classe-math">Classe math</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#union-find">Union_Find</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="fonctions.html"
+                        title="previous chapter">Fonctions et Méthodes</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/classes.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="fonctions.html" title="Fonctions et Méthodes"
+             >previous</a> |</li>
+        <li><a href="index.html">Programmation Orientee Objet/Java</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, A.BELCAID.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

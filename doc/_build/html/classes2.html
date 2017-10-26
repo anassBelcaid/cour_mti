@@ -1,0 +1,561 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Relations entre classes &mdash; Programmation Orientee Objet/Java</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="top" title="Programmation Orientee Objet/Java" href="index.html" />
+    <link rel="prev" title="Classes, Objets et méthodes" href="classes.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="classes.html" title="Classes, Objets et méthodes"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Programmation Orientee Objet/Java</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="relations-entre-classes">
+<h1>Relations entre classes<a class="headerlink" href="#relations-entre-classes" title="Permalink to this headline">¶</a></h1>
+<p>On peut construire des classes complexes, qui peuvent contenir d&#8217;autre classes, ou améliore  ou modifie le comportement des classes existantes.</p>
+<div class="section" id="composition">
+<h2>Composition<a class="headerlink" href="#composition" title="Permalink to this headline">¶</a></h2>
+<p>Un lien de <strong>composition</strong> (fait partie) symbolise l&#8217;existence d&#8217;une relation particulière, dite &#8216;forte&#8217;, entre deux entités (classes). par exemple:</p>
+<ul class="simple">
+<li>Un <strong>Segment</strong> contient deux <em>points</em>.</li>
+<li>Une <strong>Voiture</strong> doit contenir un <em>Carburateur</em>.</li>
+<li>Une <strong>Ordinateur</strong> ne peut pas fonctionner sans une <em>carte mère</em>.</li>
+</ul>
+<p>Donc une <strong>composition</strong> est définie par les points suivants:</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Par exemple dans le premier exemple, on dit que la classe <em>Point</em> est <strong>agrégée</strong> à la classe <em>Segment</em>.</p>
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt>Durée de vie:</dt>
+<dd><p class="first last">Toute classe agrégée est détruite quand sa classe <em>composite</em>  est détruite.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Exclusivité:</dt>
+<dd><p class="first last">Une classe agrégée ne peut exister que pour une seule classe composite.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="section" id="exemples">
+<h3>exemples:<a class="headerlink" href="#exemples" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-java"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Voiture</span>
+<span class="o">{</span>
+    <span class="c1">//Voiture est responsable de l&#39;objet carb.</span>
+    <span class="kd">private</span> <span class="n">Carburateur</span> <span class="n">carb</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Voiture</span><span class="o">(...)</span>
+    <span class="o">{</span>
+       <span class="c1">//le constructeur Voiture doit aussi construire carb</span>
+       <span class="n">carb</span><span class="o">=</span><span class="k">new</span> <span class="n">Carburateur</span><span class="o">(...)</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="section" id="exercice">
+<h4>Exercice:<a class="headerlink" href="#exercice" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple">
+<li>Créer une classe <strong>Segment</strong> en utilisant la classe prédéfinie <strong>Point</strong>.</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" id="agregation">
+<h2>Agrégation<a class="headerlink" href="#agregation" title="Permalink to this headline">¶</a></h2>
+<p>l&#8217;agrégation permet de définir une entité comme étant liée à <strong>plusieurs</strong> entités de classe différentes. C&#8217;est une généralisation de la composition, qui <strong>n&#8217;entraîne</strong> pas l&#8217;appartenance par exemple:</p>
+<ul class="simple">
+<li>Une faculté utilise un ensemble de <strong>Professeurs</strong>.</li>
+<li>Un aéroport agrège plusieurs <strong>avions</strong>.</li>
+</ul>
+<div class="highlight-java"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Faculte</span>
+<span class="o">{</span>
+   <span class="c1">// liste des professeurs</span>
+   <span class="kd">private</span> <span class="n">Professeur</span><span class="o">[]</span> <span class="n">profs</span><span class="o">;</span>
+
+   <span class="kd">public</span> <span class="nf">Faculte</span><span class="o">(...)</span>
+   <span class="o">{</span>
+          <span class="c1">//la classe faculté n&#39;est pas responsable</span>
+          <span class="c1">//pour la création des professeurs. il les ajoutes</span>
+   <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li>Ecrire un code en java pour le modèle suivant:</li>
+</ol>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/agregation.png"><img alt="text if image isn't found" src="_images/agregation.png" style="width: 684.0px; height: 276.0px;" /></a>
+<p class="caption">Diagramme d&#8217;agrégation.</p>
+</div>
+</div>
+<div class="section" id="heritage">
+<h2>Héritage<a class="headerlink" href="#heritage" title="Permalink to this headline">¶</a></h2>
+<p>Le concept d&#8217;héritage est un des concepts les plus important dans la programmation orienté objet. C&#8217;est un mécanisme permettant de créer une nouvelle classe <strong>à partir</strong> d&#8217;une classe existante en lui proférant ses propriétés et ses méthodes.</p>
+<p>Ainsi, pour définir une nouvelle classe, il suffit de la faire hériter d&#8217;une classe existante et de lui ajouter de nouvelles propriétés/méthodes.</p>
+<p>Par un exemple un <em>Lion</em> peut être modélisé comme un <strong>carnivore</strong> en lui ajoutant les d&#8217;autre propriétés.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Dans l&#8217;exemple précédant on dit que la classe <strong>Lion</strong> est dit classe <em>mère</em> de la classe <strong>Lion</strong>.</p>
+</div>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/heritage.png"><img alt="text if image isn't found" src="_images/heritage.png" style="width: 770.0px; height: 476.0px;" /></a>
+<p class="caption">Diagramme d&#8217;héritage</p>
+</div>
+<p>En java pour indiquer qu&#8217;une classe B hérite d&#8217;une classe A, on utilise le mot clé <strong>extends</strong> dans la déclaration de la classe.</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">B</span> <span class="kd">extends</span> <span class="n">A</span>
+<span class="o">{</span>
+      <span class="o">...</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Dans cette section on propose un exemple simple pour bien assimiler syntaxe concernant l&#8217;héritage. Le but de l&#8217;exemple est de créer une classe <strong>Point Coloré</strong> en héritant de la classe <strong>Point</strong> et en utilisant une composition avec la classe <strong>Color</strong>.</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Point</span> <span class="o">{</span>
+	
+	<span class="kd">protected</span> <span class="kt">double</span> <span class="n">x</span><span class="o">;</span>
+	<span class="kd">protected</span> <span class="kt">double</span> <span class="n">y</span><span class="o">;</span>
+	<span class="kd">protected</span> <span class="kt">char</span> <span class="n">nom</span><span class="o">;</span>
+	
+	<span class="kd">public</span> <span class="nf">Point</span><span class="o">()</span>
+	<span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">x</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">y</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">nom</span><span class="o">=</span><span class="sc">&#39;O&#39;</span><span class="o">;</span>
+	<span class="o">}</span>
+	
+	<span class="kd">public</span> <span class="nf">Point</span><span class="o">(</span><span class="kt">double</span> <span class="n">x</span><span class="o">,</span><span class="kt">double</span> <span class="n">y</span><span class="o">,</span><span class="kt">char</span> <span class="n">N</span><span class="o">)</span>
+	<span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">x</span><span class="o">=</span><span class="n">x</span><span class="o">;</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">y</span><span class="o">=</span><span class="n">y</span><span class="o">;</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">nom</span><span class="o">=</span><span class="n">N</span><span class="o">;</span>
+	<span class="o">}</span>
+	
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">afficher</span><span class="o">()</span>
+	<span class="o">{</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&quot;%c=(%.2f,%.2f)\n&quot;</span><span class="o">,</span><span class="n">nom</span><span class="o">,</span><span class="n">x</span><span class="o">,</span><span class="n">y</span><span class="o">);</span>
+	<span class="o">}</span>
+	
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">deplacer</span><span class="o">(</span><span class="kt">double</span> <span class="n">dx</span><span class="o">,</span><span class="kt">double</span> <span class="n">dy</span><span class="o">)</span>
+	<span class="o">{</span>
+		<span class="n">x</span><span class="o">+=</span><span class="n">dx</span><span class="o">;</span>
+		<span class="n">y</span><span class="o">+=</span><span class="n">dy</span><span class="o">;</span>
+	<span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">java.awt.Color</span><span class="o">;</span>
+
+<span class="c1">//class héritant de Point</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PointColor</span> <span class="kd">extends</span> <span class="n">Point</span> <span class="o">{</span>
+	
+	<span class="c1">//ajout d&#39;un attribut couleur</span>
+	<span class="kd">private</span> <span class="n">Color</span> <span class="n">c</span><span class="o">;</span>
+	
+	<span class="c1">//Constructeur par defaut</span>
+	<span class="kd">public</span> <span class="nf">PointColor</span><span class="o">()</span>
+	<span class="o">{</span>
+		<span class="c1">//appeler le constructeur par defaut de Point</span>
+		<span class="kd">super</span><span class="o">();</span>
+		
+		<span class="c1">//ajouter une couleur blanche</span>
+		<span class="n">c</span><span class="o">=</span><span class="k">new</span> <span class="n">Color</span><span class="o">(</span><span class="mi">255</span><span class="o">,</span> <span class="mi">255</span><span class="o">,</span> <span class="mi">255</span><span class="o">);</span>
+	<span class="o">}</span>
+	
+	<span class="kd">public</span> <span class="nf">PointColor</span><span class="o">(</span><span class="kt">double</span> <span class="n">x</span><span class="o">,</span><span class="kt">double</span> <span class="n">y</span><span class="o">,</span><span class="kt">char</span> <span class="n">N</span><span class="o">,</span><span class="n">Color</span> <span class="n">C</span><span class="o">)</span>
+	<span class="o">{</span>
+		<span class="c1">//appeler le constructeur de Point</span>
+		<span class="kd">super</span><span class="o">(</span><span class="n">x</span><span class="o">,</span><span class="n">y</span><span class="o">,</span><span class="n">N</span><span class="o">);</span>
+		
+		<span class="c1">//affecter la couleur</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">c</span><span class="o">=</span><span class="n">C</span><span class="o">;</span>
+	<span class="o">}</span>
+	
+	<span class="c1">//Afficher le point en utilisant la fonction de Point</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">afficher</span><span class="o">()</span>
+	<span class="o">{</span>
+		<span class="kd">super</span><span class="o">.</span><span class="na">afficher</span><span class="o">();</span>
+		
+		<span class="c1">//Afficher la partie manquante</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Couleur est &quot;</span><span class="o">+</span><span class="n">c</span><span class="o">);</span>
+	<span class="o">}</span>
+	
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">changerCouleur</span><span class="o">(</span><span class="n">Color</span> <span class="n">c</span><span class="o">)</span>
+	<span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">c</span><span class="o">=</span><span class="n">c</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="surcharge">
+<h2>Surcharge<a class="headerlink" href="#surcharge" title="Permalink to this headline">¶</a></h2>
+<p>La <strong>surcharge</strong> est une possibilité offerte par certains langages de programmation comme <em>JAVA</em> qui permet de choisir entre différentes implémentations d&#8217;une même fonction.</p>
+<p class="centered">
+<strong>Exemple</strong></p><div class="highlight-java"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">A</span>
+<span class="o">{</span>
+    <span class="c1">//première définition d&#39;une méthode</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">method1</span><span class="o">(</span><span class="kt">double</span> <span class="n">x</span><span class="o">)</span>
+
+
+    <span class="c1">//Surcharger la fonction,</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">method1</span><span class="o">(</span><span class="kt">double</span> <span class="n">x</span><span class="o">,</span> <span class="kt">double</span> <span class="n">y</span><span class="o">)</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="le-mot-cle-final">
+<h2>Le mot clé final<a class="headerlink" href="#le-mot-cle-final" title="Permalink to this headline">¶</a></h2>
+<p>Le mot clé <strong>final</strong> doit être utilisé pour fixer l&#8217;état soit:</p>
+<ul class="simple">
+<li>Variable</li>
+<li>Méthode</li>
+<li>Classe</li>
+</ul>
+<div class="section" id="variables">
+<h3>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h3>
+<p>Ajouté à une variable, ne permet plus de changer sa valeur.</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FinalVariable</span> <span class="o">{</span>
+	
+	<span class="c1">//variable final non modifiable</span>
+<span class="hll">	<span class="kd">final</span> <span class="kd">static</span> <span class="kt">double</span> <span class="n">g</span><span class="o">=</span><span class="mf">9.8</span><span class="o">;</span> 
+</span>	
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		
+		<span class="c1">//Afficher la valeur de g</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;g= &quot;</span><span class="o">+</span><span class="n">g</span><span class="o">);</span>
+		
+		<span class="c1">//Changer la valeur de g donnera une erreur</span>
+		<span class="n">g</span><span class="o">+=</span><span class="mi">3</span><span class="o">;</span>
+	<span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="methodes">
+<h3>Méthodes<a class="headerlink" href="#methodes" title="Permalink to this headline">¶</a></h3>
+<p>Pour une fonction, le mot <em>final</em> indique qu&#8217;on peut plus la <strong>surcharger</strong>.</p>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">//une simple classe pour démontrer l&#39;héritage</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">A</span> <span class="o">{</span>
+	
+	<span class="kd">protected</span> <span class="kt">double</span> <span class="n">a</span><span class="o">;</span>
+	
+	<span class="c1">//Constructeur simple</span>
+	<span class="kd">public</span> <span class="nf">A</span><span class="o">(</span><span class="kt">double</span> <span class="n">a</span><span class="o">)</span>
+	<span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">a</span><span class="o">=</span><span class="n">a</span><span class="o">;</span>
+	<span class="o">}</span>
+	
+	<span class="c1">//méthode simple pour afficher a</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">method1</span><span class="o">()</span>
+	<span class="o">{</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;valeur de a= &quot;</span><span class="o">+</span><span class="n">a</span><span class="o">);</span>
+	<span class="o">}</span>
+	
+	<span class="c1">//deuxième méthode non surchable pour afficher un message</span>
+<span class="hll">	<span class="kd">public</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">method2</span><span class="o">()</span>
+</span>	<span class="o">{</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Message dans la classe A&quot;</span><span class="o">);</span>
+	<span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">B</span> <span class="kd">extends</span> <span class="n">A</span> <span class="o">{</span>
+	
+	<span class="kd">protected</span> <span class="kt">double</span> <span class="n">b</span><span class="o">;</span>
+	
+	
+	<span class="kd">public</span> <span class="nf">B</span><span class="o">(</span><span class="kt">double</span> <span class="n">a</span><span class="o">,</span><span class="kt">double</span> <span class="n">b</span><span class="o">)</span>
+	<span class="o">{</span>	
+<span class="hll">		<span class="kd">super</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>
+</span>		<span class="k">this</span><span class="o">.</span><span class="na">b</span><span class="o">=</span><span class="n">b</span><span class="o">;</span>
+	<span class="o">}</span>
+	
+	<span class="c1">//surchage de la première méthode (possible</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">method1</span><span class="o">()</span>
+	<span class="o">{</span>
+		<span class="c1">//appeler la méthode de la classe mère</span>
+		<span class="kd">super</span><span class="o">.</span><span class="na">method1</span><span class="o">();</span>
+		
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;valeur de b= &quot;</span><span class="o">+</span><span class="n">b</span><span class="o">);</span>
+	<span class="o">}</span>
+	
+	<span class="c1">//Ceci donnera une erreur car method2 est finale dans B</span>
+	<span class="c1">//public void method2();</span>
+	
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="o">[]</span><span class="n">args</span><span class="o">)</span>
+	<span class="o">{</span>
+		<span class="n">B</span> <span class="n">var</span><span class="o">=</span><span class="k">new</span> <span class="n">B</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span><span class="mi">2</span><span class="o">);</span>
+		
+		<span class="n">var</span><span class="o">.</span><span class="na">method1</span><span class="o">();</span>
+		<span class="n">var</span><span class="o">.</span><span class="na">method2</span><span class="o">();</span>
+		
+	<span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Ajouter l&#8217;attribut <em>final</em> à une classe, indiquera que cette classe ne peut plus servir comme classe <strong>mère</strong> à une autre classe. (ie) <strong>hériter</strong> de cette classe est impossible.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Relations entre classes</a><ul>
+<li><a class="reference internal" href="#composition">Composition</a><ul>
+<li><a class="reference internal" href="#exemples">exemples:</a><ul>
+<li><a class="reference internal" href="#exercice">Exercice:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#agregation">Agrégation</a></li>
+<li><a class="reference internal" href="#heritage">Héritage</a></li>
+<li><a class="reference internal" href="#surcharge">Surcharge</a></li>
+<li><a class="reference internal" href="#le-mot-cle-final">Le mot clé final</a><ul>
+<li><a class="reference internal" href="#variables">Variables</a></li>
+<li><a class="reference internal" href="#methodes">Méthodes</a></li>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="classes.html"
+                        title="previous chapter">Classes, Objets et méthodes</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/classes2.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="classes.html" title="Classes, Objets et méthodes"
+             >previous</a> |</li>
+        <li><a href="index.html">Programmation Orientee Objet/Java</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, A.BELCAID.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

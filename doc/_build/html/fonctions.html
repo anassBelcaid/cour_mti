@@ -1,0 +1,686 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Fonctions et Méthodes &mdash; Programmation Orientee Objet/Java</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="top" title="Programmation Orientee Objet/Java" href="index.html" />
+    <link rel="next" title="Classes, Objets et méthodes" href="classes.html" />
+    <link rel="prev" title="Tableaux" href="tableaux1.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="classes.html" title="Classes, Objets et méthodes"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tableaux1.html" title="Tableaux"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Programmation Orientee Objet/Java</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="fonctions-et-methodes">
+<h1>Fonctions et Méthodes<a class="headerlink" href="#fonctions-et-methodes" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Dans cette partie du cours, on va présenter les notions qui vont nous aider à <strong>organiser</strong> notre code en le modélisant à l&#8217;aide de nos <em>propres</em> fonctions.</li>
+<li>Les <strong>fonctions</strong> font partie des aspects de traitement au même titre que les expressions et structures de contrôle.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Jusqu’à maintenant les programmes qu&#8217;on a développés sont constitués d&#8217;une séquence <strong>linéaire</strong> d&#8217;instructions, sans <strong>organisation</strong> globale, et sans <strong>partage</strong> des taches <em>répétées</em>.</p>
+</div>
+<div class="section" id="notion-de-reutilisabilite">
+<h2>Notion de Réutilisabilité<a class="headerlink" href="#notion-de-reutilisabilite" title="Permalink to this headline">¶</a></h2>
+<p>Supposons que le contrôle d&#8217;une entrée:</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="k">do</span>
+<span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Donner une note: &quot;</span><span class="o">);</span>
+    <span class="n">note</span><span class="o">=</span><span class="n">clavier</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+<span class="o">}</span><span class="k">while</span><span class="o">((</span><span class="n">note</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">note</span><span class="o">&gt;</span><span class="mi">20</span><span class="o">));</span>
+</pre></div>
+</div>
+<p>doit être <strong>répétée</strong> dans plusieurs parties du programme.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last"><strong>bonne pratique</strong> : Ne jamais dupliquer un code en programmant, donc éviter le fameux <em>copier/coller</em>.</p>
+</div>
+<p>Généralement si vous voulez copier un code, c&#8217;est un indice que vous avez besoin d&#8217;une <strong>fonction</strong>.</p>
+<div class="section" id="mauvaise-repitition">
+<h3>Mauvaise répitition:<a class="headerlink" href="#mauvaise-repitition" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">//codes/chap05/Score1.java</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+
+
+<span class="kd">class</span> <span class="nc">Score1</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="cm">/** Programme pour lire le nombre de points et le temps deux deux joueurs puis afficher leur score</span>
+<span class="cm">        */</span>
+
+        <span class="c1">//Clavier D&#39;entrée</span>
+        <span class="n">Scanner</span> <span class="n">clavier</span><span class="o">=</span><span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="c1">//Lire le nombre de points du premier joueur</span>
+        <span class="kt">int</span> <span class="n">nbPoints</span><span class="o">;</span>
+
+        <span class="k">do</span>
+        <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Donner votre nombre de points (1--100): &quot;</span><span class="o">);</span>
+            <span class="n">nbPoints</span><span class="o">=</span><span class="n">clavier</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="o">}</span><span class="k">while</span><span class="o">(</span> <span class="n">nbPoints</span><span class="o">&lt;</span><span class="mi">0</span> <span class="o">||</span>  <span class="n">nbPoints</span><span class="o">&gt;</span><span class="mi">100</span> <span class="o">);</span>
+
+
+        <span class="c1">//lire le temps du joueur</span>
+        <span class="kt">double</span> <span class="n">temps</span><span class="o">;</span>
+        <span class="k">do</span>
+        <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;donner votre temps (1--60)&quot;</span><span class="o">);</span>
+            <span class="n">temps</span><span class="o">=</span><span class="n">clavier</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+        <span class="o">}</span><span class="k">while</span><span class="o">(</span><span class="n">temps</span><span class="o">&lt;</span><span class="mi">0</span> <span class="o">||</span> <span class="n">temps</span><span class="o">&gt;</span><span class="mi">60</span><span class="o">);</span>
+
+        <span class="c1">//Calculer le score du premier joueur</span>
+        <span class="kt">int</span> <span class="n">score1</span><span class="o">=(</span><span class="kt">int</span><span class="o">)(</span><span class="mi">40</span><span class="o">*</span><span class="n">nbPoints</span><span class="o">/</span><span class="n">temps</span><span class="o">);</span>
+
+
+        <span class="c1">//Score du deuxième joueur</span>
+        <span class="k">do</span>
+        <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Donner votre nombre de points (1--100): &quot;</span><span class="o">);</span>
+            <span class="n">nbPoints</span><span class="o">=</span><span class="n">clavier</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="o">}</span><span class="k">while</span><span class="o">(</span> <span class="n">nbPoints</span><span class="o">&lt;</span><span class="mi">0</span> <span class="o">||</span>  <span class="n">nbPoints</span><span class="o">&gt;</span><span class="mi">100</span> <span class="o">);</span>
+
+
+        <span class="c1">//lire le temps du joueur</span>
+        <span class="k">do</span>
+        <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;donner votre temps (1--60)&quot;</span><span class="o">);</span>
+            <span class="n">temps</span><span class="o">=</span><span class="n">clavier</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+        <span class="o">}</span><span class="k">while</span><span class="o">(</span><span class="n">temps</span><span class="o">&lt;</span><span class="mi">0</span> <span class="o">||</span> <span class="n">temps</span><span class="o">&gt;</span><span class="mi">60</span><span class="o">);</span>
+
+        <span class="c1">//Calculer le score du premier joueur</span>
+        <span class="kt">int</span> <span class="n">score2</span><span class="o">=(</span><span class="kt">int</span><span class="o">)(</span><span class="mi">40</span><span class="o">*</span><span class="n">nbPoints</span><span class="o">/</span><span class="n">temps</span><span class="o">);</span>
+
+        <span class="c1">//Afficher les scores</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&quot;score joueur 1 est %d\n&quot;</span><span class="o">,</span><span class="n">score1</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&quot;score joueur 2 est %d\n&quot;</span><span class="o">,</span><span class="n">score2</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Malgré que ce code est lent , il ne contient que des taches simples. a titre d&#8217;exemple la <strong>saisie</strong> des données. et le calcul du <strong>score</strong>.</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kd">static</span> <span class="kt">int</span> <span class="nf">saisieEtCalcul</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="kt">int</span> <span class="n">nbPoints</span><span class="o">;</span>
+
+    <span class="k">do</span>
+    <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Donner votre nombre de points (1--100): &quot;</span><span class="o">);</span>
+        <span class="n">nbPoints</span><span class="o">=</span><span class="n">clavier</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+    <span class="o">}</span><span class="k">while</span><span class="o">(</span> <span class="n">nbPoints</span><span class="o">&lt;</span><span class="mi">0</span> <span class="o">||</span>  <span class="n">nbPoints</span><span class="o">&gt;</span><span class="mi">100</span> <span class="o">);</span>
+
+
+    <span class="c1">//lire le temps du joueur</span>
+    <span class="kt">double</span> <span class="n">temps</span><span class="o">;</span>
+    <span class="k">do</span>
+    <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;donner votre temps (1--60)&quot;</span><span class="o">);</span>
+        <span class="n">temps</span><span class="o">=</span><span class="n">clavier</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+    <span class="o">}</span><span class="k">while</span><span class="o">(</span><span class="n">temps</span><span class="o">&lt;</span><span class="mi">0</span> <span class="o">||</span> <span class="n">temps</span><span class="o">&gt;</span><span class="mi">60</span><span class="o">);</span>
+
+    <span class="c1">//Calculer le score du premier joueur</span>
+    <span class="kt">int</span> <span class="n">score</span><span class="o">=(</span><span class="kt">int</span><span class="o">)(</span><span class="mi">40</span><span class="o">*</span><span class="n">nbPoints</span><span class="o">/</span><span class="n">temps</span><span class="o">);</span>
+
+    <span class="c1">//retourner la valeur de calcul</span>
+    <span class="k">return</span> <span class="n">score</span><span class="o">;</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Aussi on pourra faire la même chose pour le calcul du score.</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kd">static</span> <span class="kt">int</span> <span class="nf">calculerScore</span><span class="o">(</span><span class="kt">int</span>  <span class="n">nbPoints</span><span class="o">,</span><span class="kt">double</span> <span class="n">temps</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">temps</span><span class="o">!=</span><span class="mi">0</span><span class="o">)</span>
+    <span class="o">{</span>
+       <span class="k">return</span> <span class="o">(</span><span class="kt">int</span><span class="o">)(</span><span class="mi">40</span><span class="o">*</span><span class="n">nbPoints</span><span class="o">/</span><span class="n">temps</span><span class="o">)</span>
+    <span class="o">}</span>
+    <span class="k">else</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="fonctions">
+<h2>Fonctions<a class="headerlink" href="#fonctions" title="Permalink to this headline">¶</a></h2>
+<p>Une <strong>fonction</strong>: est une portion du programme réutilisable, ou importante en soi.</p>
+<p>et qui est caractérisée par:</p>
+<ul class="simple">
+<li><strong>corps</strong> : la portion du programme a réusitilisée, ou mettre en évidence.</li>
+<li><strong>Nom</strong>   : par lequel on va désigner cette fonction.</li>
+<li><strong>arguments</strong> : ensemble de variables extérieurs à la fonction, dont le <em>corps</em> dépend pour fonctionner.</li>
+<li><strong>Valeur de retour</strong> : Ce que la fonction renvoie au reste du programme.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">L&#8217;utilisation d&#8217;une fonction dans autre partie du programme, se nomme <strong>appel</strong> de la fonction.</p>
+</div>
+<div class="section" id="trois-facettes-d-une-fonction">
+<h3>Trois facettes d&#8217;une fonction<a class="headerlink" href="#trois-facettes-d-une-fonction" title="Permalink to this headline">¶</a></h3>
+<p>Dans un programme on peut rencontrer une fonction sous l&#8217;une des formes suivantes:</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/diagram_fonctions.png"><img alt="diagram_fonctions" src="_images/diagram_fonctions.png" /></a>
+<p class="caption">Différents utilisation d&#8217;une fonction</p>
+</div>
+<ul class="simple">
+<li>Utilisation(appel):</li>
+</ul>
+<p>Action d&#8217;utiliser une fonction, en l&#8217;appelant dans un programme.</p>
+<p class="centered">
+<strong>exemple</strong></p><div class="highlight-java"><div class="highlight"><pre><span class="c1">//fonction sans valeur de retour ni arguments</span>
+<span class="n">saisieEtCalcul</span><span class="o">();</span>
+
+<span class="c1">//fonction sans valeur de retour, mais avec arguments</span>
+<span class="n">triTableau</span><span class="o">(</span><span class="n">T</span><span class="o">);</span>
+
+<span class="c1">//fonction avec une valeur de retour, et arguments</span>
+<span class="kt">char</span> <span class="n">c</span><span class="o">=</span><span class="n">getClass</span><span class="o">(</span><span class="n">ip</span><span class="o">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Création(définition):</li>
+</ul>
+<p>Action de définir, et <strong>implémenter</strong> (préciser le corps) d&#8217;une fonction.</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kt">double</span> <span class="nf">min</span><span class="o">(</span><span class="kt">double</span> <span class="n">a</span><span class="o">,</span><span class="kt">double</span> <span class="n">b</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="c1">//calculer le min;</span>
+    <span class="kt">double</span> <span class="n">resultat</span><span class="o">=(</span><span class="n">a</span><span class="o">&lt;</span><span class="n">b</span><span class="o">)?</span><span class="nl">a:</span><span class="n">b</span><span class="o">;</span>
+
+    <span class="c1">//retourner la valeur calculée</span>
+    <span class="k">return</span> <span class="n">resultat</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Résumé (Contrat):</li>
+</ul>
+<p>Action de préciser juste la <strong>définition</strong> ou le <em>prototype</em> d&#8217;une fonction, sans préciser sans corps.</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="c1">//prototype des fonctions précédentes</span>
+<span class="kt">void</span> <span class="nf">saisieEtCalcul</span><span class="o">();</span>
+
+<span class="c1">//fonction pour trier un tableau</span>
+<span class="kt">void</span> <span class="nf">triTableau</span><span class="o">(</span><span class="kt">double</span> <span class="o">[]);</span>
+
+<span class="c1">//fonction pour obtenir une classe d&#39;un ip</span>
+<span class="kt">char</span> <span class="nf">getClass</span><span class="o">(</span><span class="n">Ip</span> <span class="o">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="passage-d-arguments">
+<h2>Passage d&#8217;arguments<a class="headerlink" href="#passage-d-arguments" title="Permalink to this headline">¶</a></h2>
+<p>Considérons la situation suivante:</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kd">static</span> <span class="kt">void</span> <span class="nf">methode</span><span class="o">(</span><span class="n">Type</span> <span class="n">v</span><span class="o">)</span>
+<span class="o">{</span>
+   <span class="c1">// la fonction contient un traitement qui modifie v</span>
+<span class="o">}</span>
+
+<span class="c1">//Ailleurs dans le programme principal</span>
+<span class="n">Type</span> <span class="n">v1</span><span class="o">=....;</span>
+
+<span class="c1">//appel de la fonction</span>
+<span class="n">methode</span><span class="o">(</span><span class="n">v1</span><span class="o">);</span>
+
+<span class="c1">//Question qui se pose: est ce que v1 sera modifiée.</span>
+</pre></div>
+</div>
+<p>En <strong>Programmation</strong> de façon générale, on dira que:</p>
+<ul class="simple">
+<li>L&#8217;argument v est <strong>passé par valeur</strong>, si <em>méthode</em>  ne peut pas modifier v1, car v est une <strong>copie</strong> de v1.</li>
+<li>L&#8217;argument v est <strong>passé par référence</strong>, si <em>méthode</em> peut modifier v1.</li>
+</ul>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">En Java, il n&#8217;existe que le passage par <strong>valeur</strong>, (ie) une méthode travaille toujours sur une <strong>copie</strong> de la valeur qui lui est passée en paramètre.</p>
+</div>
+<p>donc si <strong>Type</strong> est un type élémentaire. la valeur de <strong>v1</strong> ne sera pas changée.</p>
+<p class="centered">
+<strong>Exemple</strong></p><div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">//codes/chap05/Passage1.java</span>
+
+
+<span class="kd">class</span> <span class="nc">Passage1</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="kt">double</span> <span class="n">a</span><span class="o">=</span><span class="mf">3.2</span><span class="o">;</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;valeur de a est =&quot;</span><span class="o">+</span><span class="n">a</span><span class="o">);</span>
+
+        <span class="c1">//essai de modifier le contenu de a par une méthode simple</span>
+        <span class="n">augmenter</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>
+<span class="hll">
+</span>        <span class="c1">//Afficher a après</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;valeur de a est =&quot;</span><span class="o">+</span><span class="n">a</span><span class="o">);</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">static</span> <span class="kt">void</span> <span class="nf">augmenter</span><span class="o">(</span><span class="kt">double</span> <span class="n">a</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="c1">//méthode qui va essayer d&#39;augmenter la valeur de a</span>
+        <span class="n">a</span><span class="o">+=</span><span class="mi">3</span><span class="o">;</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Dans la fonction: valeur de a est =&quot;</span><span class="o">+</span><span class="n">a</span><span class="o">);</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="passage-par-valeur-type-evolue">
+<h3>Passage par valeur: Type évolué.<a class="headerlink" href="#passage-par-valeur-type-evolue" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Pour le type évolué, c&#8217;est toujours un passage par valeur, mais cette fois ci c&#8217;est la <strong>référence</strong> qui est copiée.</li>
+</ul>
+<p>et donc</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Toute modification faite sur l&#8217;objet référence via <strong>la copie</strong> est visible via <strong>l&#8217;origine</strong>.</p>
+</div>
+<p class="centered">
+<strong>Exemple</strong></p><div class="highlight-java"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">//codes/chap05/Passage2.java</span>
+
+
+<span class="kd">class</span> <span class="nc">Passage2</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="c1">//Declérer un référence sur un tableau</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">T</span><span class="o">={</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">};</span>
+
+        <span class="c1">//Afficher le tableau par une fonction</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&quot;Tab = %d\t%d\n&quot;</span><span class="o">,</span><span class="n">T</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span><span class="n">T</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
+
+
+        <span class="c1">//Modifier les valeur du tableau par une fonction</span>
+<span class="hll">        <span class="n">augmenter</span><span class="o">(</span><span class="n">T</span><span class="o">);</span>
+</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;nouvelle valeurs de T&quot;</span><span class="o">);</span>
+        <span class="c1">//Afficher le résultats</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&quot;Tab = %d\t%d\n&quot;</span><span class="o">,</span><span class="n">T</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span><span class="n">T</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">static</span> <span class="kt">void</span> <span class="nf">augmenter</span><span class="o">(</span><span class="kt">int</span> <span class="o">[]</span> <span class="n">Tab</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="c1">//fonction pour changer le contenu d&#39;un tableau</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">Tab</span><span class="o">.</span><span class="na">length</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span>
+        <span class="o">{</span>
+            <span class="n">Tab</span><span class="o">[</span><span class="n">i</span><span class="o">]+=</span><span class="mi">1</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="l-instruction-return">
+<h4>L&#8217;instruction return<a class="headerlink" href="#l-instruction-return" title="Permalink to this headline">¶</a></h4>
+<p>L&#8217;instruction <strong>return</strong> est utilisée pour indiquer la valeur de retour d&#8217;une fonction.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">L&#8217;instruction <em>return</em> <strong>termine</strong> l&#8217;exécution d&#8217;une fonction.</p>
+</div>
+<p>Supposons qu&#8217;on as défini la fonction suivante.</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kt">boolean</span> <span class="nf">afficherInfo</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span>
+<span class="o">{</span>
+     <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">n</span><span class="o">;</span>
+     <span class="k">while</span><span class="o">(</span><span class="n">i</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">)</span>
+     <span class="o">{</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">i</span><span class="o">%</span><span class="mi">3</span><span class="o">==</span><span class="mi">0</span><span class="o">)</span>
+        <span class="o">{</span>
+           <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">else</span>
+        <span class="o">{</span>
+            <span class="n">i</span><span class="o">--;</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+        <span class="o">}</span>
+     <span class="o">}</span>
+     <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Quel sera l&#8217;affichage des instructions suivantes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">afficherInfo</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="n">afficherInfo</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Question</strong></p>
+<p>Quel est le rôle de la fonction suivante:</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kt">boolean</span> <span class="nf">mystere</span><span class="o">(</span><span class="kt">int</span> <span class="n">p</span><span class="o">)</span>
+<span class="o">{</span>
+
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">p</span><span class="o">;</span><span class="n">i</span><span class="o">++</span> <span class="o">)</span>
+      <span class="k">if</span><span class="o">(</span><span class="n">p</span><span class="o">%</span><span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="o">)</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+
+    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="simulation-aleatoire">
+<h4>Simulation aléatoire<a class="headerlink" href="#simulation-aleatoire" title="Permalink to this headline">¶</a></h4>
+<p>Dans cet exemple on se propose d&#8217;écrire un programme qui simule le lancé d&#8217;un <strong>dé</strong> à <span class="math">\(n\)</span> faces, et afficher les résultats de l&#8217;expérience.</p>
+<ol class="arabic simple">
+<li>proposer des fonctions pour simplifier l&#8217;exécution de ce programme.</li>
+<li>on propose le programme suivant:</li>
+</ol>
+<div class="highlight-java"><div class="highlight"><pre><span class="c1">//codes/chap05/Simulation.java</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">Simulation</span> <span class="o">{</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="c1">//lecture de la taille des faces</span>
+    <span class="n">Scanner</span> <span class="n">clavier</span><span class="o">=</span><span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Donner le nombre de faces : &quot;</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="o">=</span><span class="n">clavier</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+
+    <span class="c1">//Lancer la simulation par une fonction</span>
+    <span class="kt">int</span> <span class="o">[]</span><span class="n">resultats</span><span class="o">=</span><span class="n">simulation</span><span class="o">(</span><span class="n">n</span><span class="o">);</span>
+
+
+    <span class="c1">//Afficher les resultats</span>
+    <span class="n">afficherResultats</span><span class="o">(</span><span class="n">resultats</span><span class="o">);</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>qui utilise les fonction d&#8217;aide suivants:</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="c1">//fonction pour lancer l&#39;expérience n fois</span>
+<span class="c1">//et sauvegarder les résultats dans un tableau</span>
+<span class="kt">int</span> <span class="o">[]</span> <span class="n">simulation</span><span class="o">(</span><span class="kt">int</span><span class="o">);</span>
+
+<span class="c1">//fonction simple pour afficher les résultats</span>
+<span class="kt">void</span> <span class="nf">afficherResultats</span><span class="o">(</span><span class="kt">int</span> <span class="o">[]);</span>
+</pre></div>
+</div>
+<p>Solution dans</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">codes</span><span class="o">/</span><span class="n">chap05</span><span class="o">/</span><span class="n">Simulation</span><span class="o">.</span><span class="n">java</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="exercices">
+<h4>Exercices<a class="headerlink" href="#exercices" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic">
+<li><dl class="first docutils">
+<dt>Ecrire une fonction pour calculer le max de deux entiers::</dt>
+<dd><p class="first last">int maxEntre(int,int);</p>
+</dd>
+</dl>
+</li>
+</ol>
+<p>Ecrire un programme <strong>java</strong> qui utilise cette fonction pour le calculer du max de <span class="math">\(4\)</span> entiers saisis en clavier.</p>
+<ol class="arabic" start="2">
+<li><p class="first">Ecrire une fonction pour afficher un Tableau des réels.</p>
+</li>
+<li><p class="first">Ecrire une fonction pour chercher un élément dans un tableau:</p>
+<div class="highlight-python"><div class="highlight"><pre>boolean existe(int [],int valeur);
+</pre></div>
+</div>
+</li>
+<li><p class="first">Ecrire une fonction qui vérifie si un nombre est <strong>parfait</strong> ou non.</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Un nombre est parfait, s&#8217;il est égal à la somme de ces <em>diviseurs</em> sauf lui même.</p>
+</div>
+<p><strong>Exemple</strong></p>
+<div class="math">
+\[6=1+2+3\]</div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Fonctions et Méthodes</a><ul>
+<li><a class="reference internal" href="#notion-de-reutilisabilite">Notion de Réutilisabilité</a><ul>
+<li><a class="reference internal" href="#mauvaise-repitition">Mauvaise répitition:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#fonctions">Fonctions</a><ul>
+<li><a class="reference internal" href="#trois-facettes-d-une-fonction">Trois facettes d&#8217;une fonction</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#passage-d-arguments">Passage d&#8217;arguments</a><ul>
+<li><a class="reference internal" href="#passage-par-valeur-type-evolue">Passage par valeur: Type évolué.</a><ul>
+<li><a class="reference internal" href="#l-instruction-return">L&#8217;instruction return</a></li>
+<li><a class="reference internal" href="#simulation-aleatoire">Simulation aléatoire</a></li>
+<li><a class="reference internal" href="#exercices">Exercices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="tableaux1.html"
+                        title="previous chapter">Tableaux</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="classes.html"
+                        title="next chapter">Classes, Objets et méthodes</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/fonctions.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="classes.html" title="Classes, Objets et méthodes"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tableaux1.html" title="Tableaux"
+             >previous</a> |</li>
+        <li><a href="index.html">Programmation Orientee Objet/Java</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, A.BELCAID.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
